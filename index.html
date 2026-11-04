@@ -689,14 +689,14 @@ document.getElementById('copy-email').addEventListener('click', function(){
     await visit($('.hero h1 .r'),id,{fx:.3,dwell:500});
     await visit($('.hero h1 .r'),id,{fx:.8,ms:1100,dwell:400});
     await visit($('.hero-photo'),id,{fx:.5,fy:.35,ms:900,dwell:1100});hover(null);
-    await sweep($$('.hero-side li'),id,{fx:.8,ms:600,dwell:350});hover(null);
+    await sweep($$('.hero-side li'),id,{fx:.8,ms:900,dwell:1100});hover(null);
     if(innerWidth>640) await sweep($$('nav ul a'),id,{ms:520,dwell:260});
     await visit($('.cta .btn:not(.primary)'),id,{dwell:500});
     await visit($('.cta .btn.primary'),id,{dwell:600});
     await click(id);hover(null);
     // about
     await scrollToEl($('#about .sec-head'),1800,id);
-    await sweep($$('.fact'),id,{ms:650,dwell:450});
+    await sweep($$('.fact'),id,{ms:900,dwell:1100});
     hover(null);
     // projects
     var projects=$$('.project');
@@ -781,16 +781,17 @@ document.getElementById('copy-email').addEventListener('click', function(){
   function logA(c,txt){var li=log(txt);li.style.setProperty('--c',c.color);li.dataset.who=c.name.split(' ')[0];return li}
   async function buildOne(el,c,id){
     var small=el.matches(SMALL);
+    var k=el.closest('.hero,#about,.ticker')?2.2:1; // the intro (name, GPA, workplace) builds slower
     var r=el.getBoundingClientRect();
     var pad=6,x0=r.left-pad,y0=r.top-pad,w=r.width+pad*2,h=r.height+pad*2;
     var li=logA(c,what(el));
-    await cMove(c,x0,y0,small?580:940,id);
+    await cMove(c,x0,y0,(small?580:940)*k,id);
     c.el.classList.add('down');
     var f=document.createElement('div');f.className='b-frame';f.style.setProperty('--c',c.color);
     f.style.left=(x0+scrollX)+'px';f.style.top=(y0+scrollY)+'px';f.style.width='0px';f.style.height='0px';
     f.innerHTML='<span>&lt;'+tagOf(el)+'&gt; '+Math.round(r.width)+'×'+Math.round(r.height)+'</span><i></i>';
     document.body.appendChild(f);
-    await anim(small?640:1100,function(e){var cw=w*e,ch=h*e;f.style.width=cw+'px';f.style.height=ch+'px';c.x=x0+cw;c.y=y0+ch;cPlace(c)},id);
+    await anim((small?640:1100)*k,function(e){var cw=w*e,ch=h*e;f.style.width=cw+'px';f.style.height=ch+'px';c.x=x0+cw;c.y=y0+ch;cPlace(c)},id);
     c.el.classList.remove('down');
     el.classList.remove('b-wait');
     if(el.matches('h2,h3,.hero-row p,.about p,.role,.label,.hero-word,.roles'))el.classList.add('b-wipe');
@@ -799,7 +800,7 @@ document.getElementById('copy-email').addEventListener('click', function(){
     f.classList.add('solid');setTimeout(function(){f.remove()},900);
     li.className='ok';done++;
     var p=Math.round(done/total*100);bar.style.transform='scaleX('+(p/100)+')';pct.textContent=p+'%';
-    await wait(small?150:320,id);
+    await wait((small?150:320)*k*(k>1?2:1),id);
   }
   async function build(id){
     lines.innerHTML='';bar.style.transform='scaleX(0)';pct.textContent='0%';

@@ -1,230 +1,893 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Portfolio - Vu The Vinh</title>
-    <link rel="stylesheet" href="style.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> 
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Vu The Vinh: Computer Science at the University of Greenwich, network administrator at VTV, building AI systems, data pipelines and games.">
+<meta property="og:title" content="Vu The Vinh Portfolio">
+<meta property="og:description" content="AI & data builder, network administrator at VTV, Microsoft Ambassador.">
+<meta property="og:image" content="images/vinh-cutout.webp">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Vu The Vinh Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: one dark world. Giant condensed hero over a live packet-route canvas, then a "trace" down the page: hops = sections. */
+:root{
+  --bg:#0b0a0c;
+  --panel:#141216;
+  --line:#2a2529;
+  --fg:#f1ecea;
+  --muted:#9d9396;
+  --red:#e3242b;
+  --red-dim:#7a1418;
+  --display:"Big Shoulders Display","Impact","Arial Narrow",sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --script:"Caveat","Segoe Script","Brush Script MT",cursive;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.label b{color:var(--red);font-weight:600}
+
+/* NAV */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.02em;text-decoration:none}
+.brand span{color:var(--red)}
+nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-family:var(--mono);font-size:13px}
+nav ul a{text-decoration:none;color:var(--muted);transition:color .2s}
+nav ul a:hover{color:var(--fg)}
+@media (max-width:640px){nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.hero .wrap{position:relative;padding-block:72px 56px;display:grid;gap:28px}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.82;margin:0;font-size:clamp(60px,12.5vw,184px);letter-spacing:-.01em}
+.hero h1 .r{color:var(--red);display:block}
+.hero h1 .o{-webkit-text-stroke:2px var(--fg);color:transparent;display:block}
+.hero-row{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:end}
+.hero-row p{margin:0;max-width:56ch;font-size:18px;color:var(--fg)}
+.hero-row p em{font-style:normal;color:var(--red)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;border:1px solid var(--fg);transition:background .2s,color .2s,border-color .2s}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.btn.primary:hover{background:transparent;color:var(--red)}
+.btn:not(.primary):hover{background:var(--fg);color:var(--bg)}
+@media (max-width:820px){.hero-row{grid-template-columns:1fr}.cta{justify-content:flex-start}}
+
+.hero-stage{position:relative;display:grid;grid-template-columns:1fr minmax(0,580px) 1fr;align-items:end;gap:8px;margin-top:8px}
+.hero-word{position:absolute;left:50%;top:2%;transform:translateX(-50%);z-index:0;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(84px,17.5vw,270px);line-height:.8;letter-spacing:-.01em;color:var(--red);white-space:nowrap;pointer-events:none;text-shadow:0 0 60px color-mix(in srgb,var(--red) 35%,transparent)}
+.hero-photo{position:relative;z-index:2;margin:0 -40px;align-self:end}
+.hero-photo img{display:block;width:100%;height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.55));transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.hero-photo:hover img,.hero-photo.is-hover img{transform:translateY(-6px) scale(1.015)}
+.hero-photo::after{content:"";position:absolute;left:-20%;right:-20%;bottom:-2px;height:7%;background:linear-gradient(to bottom,transparent,var(--bg));z-index:3;pointer-events:none}
+.hero-left{position:relative;z-index:4;align-self:center;padding-top:clamp(40px,9vw,140px);min-width:0}
+.hello{margin:0 0 6px;font-family:var(--script);font-size:clamp(28px,3vw,42px);color:var(--fg);transform:rotate(-4deg);transform-origin:left}
+.hero .hero-left h1{font-size:clamp(48px,6.2vw,92px);line-height:.86}
+.hero .hero-left h1 span{white-space:nowrap}
+.hero .hero-left h1 .o{-webkit-text-stroke:1.6px var(--fg)}
+.roles{margin:14px 0 0;font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);line-height:1.7}
+.hero-side{position:relative;z-index:4;list-style:none;margin:0;padding:0 0 40px;display:grid;gap:22px;justify-self:end;text-align:right}
+.hero-side li{display:grid;gap:2px}
+.hero-side b{font-family:var(--display);font-weight:900;font-size:clamp(30px,3.4vw,48px);line-height:1;color:var(--fg)}
+.hero-side span{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:820px){
+  .hero-stage{grid-template-columns:1fr;gap:0}
+  .hero-word{top:0;font-size:clamp(56px,19vw,150px)}
+  .hero-photo{grid-row:1;width:min(460px,108%);justify-self:center;margin:clamp(24px,8vw,60px) 0 0}
+  .hero-left{padding-top:0;margin-top:-10px}
+  .hero-side{justify-self:start;text-align:left;grid-template-columns:repeat(3,auto);gap:20px;padding:24px 0 0}
+}
+
+/* STATUS TICKER */
+.ticker{border-bottom:1px solid var(--line);overflow:hidden;background:var(--panel)}
+.ticker-track{display:flex;gap:48px;white-space:nowrap;padding-block:14px;font-family:var(--mono);font-size:13px;color:var(--muted);animation:tick 38s linear infinite;width:max-content}
+.ticker-track span b{color:var(--fg);font-weight:600}
+.ticker-track span::before{content:"●";color:var(--red);margin-right:10px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding-block:96px;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:200px 1fr;gap:24px;margin-bottom:48px;align-items:baseline}
+.sec-head h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(44px,7vw,92px);line-height:.9;margin:0;text-wrap:balance}
+.sec-head h2 span{color:var(--red)}
+@media (max-width:720px){.sec-head{grid-template-columns:1fr;gap:8px}section{padding-block:64px}}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:200px 1fr 1fr;gap:24px}
+.about p{margin:0;max-width:60ch;color:var(--fg)}
+.about p+p{color:var(--muted)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
+.fact{background:var(--bg);padding:24px 20px;display:grid;gap:6px}
+.fact .n{font-family:var(--display);font-weight:900;font-size:56px;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+.fact .n small{font-size:24px;color:var(--muted)}
+.fact .n i{font-style:normal;color:var(--red)}
+.fact .t{font-size:14px;color:var(--muted)}
+@media (max-width:820px){.about{grid-template-columns:1fr}.about>div:first-child{display:none}.facts{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.fact{padding:18px 14px}.fact .n{font-size:40px}.fact .n small{font-size:18px}}
+
+/* PROJECTS */
+.project{display:grid;grid-template-columns:200px 1fr;gap:24px;padding-block:48px;border-top:1px solid var(--line)}
+.project:first-of-type{border-top:0;padding-top:0}
+.p-meta{display:grid;gap:10px;align-content:start}
+.p-meta .date{font-family:var(--mono);font-size:13px;color:var(--red)}
+.badge{display:inline-block;justify-self:start;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--red);color:var(--red)}
+.p-body{min-width:0}
+.p-body h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(34px,4.6vw,56px);line-height:.95;margin:0 0 8px;text-wrap:balance}
+.p-body .role{color:var(--muted);margin:0 0 24px}
+.pipeline{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px}
+.stage{background:var(--panel);padding:22px;display:grid;gap:8px;align-content:start;transition:background .25s}
+.stage:hover{background:#1c181b}
+.stage .k{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.08em}
+.stage h4{margin:0;font-size:16px;font-weight:600}
+.stage p{margin:0;font-size:14px;color:var(--muted)}
+.results{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.result{display:flex;align-items:baseline;gap:10px;padding:12px 16px;border:1px solid var(--line)}
+.result b{font-family:var(--display);font-size:30px;font-weight:900;color:var(--red);line-height:1;font-variant-numeric:tabular-nums}
+.result span{font-size:13px;color:var(--muted)}
+.features{list-style:none;margin:0 0 24px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.features li{background:var(--bg);padding:18px 20px;font-size:14px;color:var(--muted);display:grid;gap:6px;align-content:start;transition:background .25s}
+.features li:hover{background:var(--panel)}
+.features li b{color:var(--fg);font-size:15px;font-weight:600}
+.features li b::before{content:"▸ ";color:var(--red)}
+@media (max-width:820px){.features{grid-template-columns:1fr}}
+.stack{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.stack li{font-family:var(--mono);font-size:12px;padding:5px 10px;background:var(--panel);border:1px solid var(--line);color:var(--fg)}
+@media (max-width:820px){.project{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr}}
+
+/* EXPERIENCE — traceroute */
+.trace{display:grid;grid-template-columns:200px 1fr;gap:24px}
+.hops{list-style:none;margin:0;padding:0;border-left:1px solid var(--red-dim)}
+.hop{position:relative;padding:0 0 40px 32px}
+.hop:last-child{padding-bottom:0}
+.hop::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;background:var(--bg);border:2px solid var(--red)}
+.hop.live::before{background:var(--red);box-shadow:0 0 0 6px color-mix(in srgb,var(--red) 22%,transparent)}
+.hop .ms{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.hop h3{margin:4px 0 2px;font-size:22px;font-weight:600}
+.hop .org{color:var(--red);font-weight:500;margin:0 0 12px}
+.hop ul{margin:0;padding-left:18px;color:var(--muted);display:grid;gap:6px;max-width:68ch}
+@media (max-width:720px){.trace{grid-template-columns:1fr}}
+
+/* SKILLS */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.skill{background:var(--bg);padding:28px 24px;display:grid;gap:14px;align-content:start}
+.skill h3{margin:0;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600}
+.skill p{margin:0;font-size:15px}
+
+/* CREDENTIALS */
+.creds{display:grid;grid-template-columns:repeat(2,1fr);gap:48px}
+.cred-list{list-style:none;margin:0;padding:0;display:grid}
+.cred-list li{padding:20px 0;border-top:1px solid var(--line);display:grid;gap:4px}
+.cred-list li:last-child{border-bottom:1px solid var(--line)}
+.cred-list strong{font-size:17px;font-weight:600}
+.cred-list span{color:var(--muted);font-size:14px}
+.creds h3{margin:0 0 8px}
+@media (max-width:820px){.creds{grid-template-columns:1fr}}
+
+/* CONTACT */
+.contact{padding-block:110px 80px;border-bottom:0}
+.contact h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(64px,14vw,190px);line-height:.82;margin:0 0 40px}
+.contact h2 span{color:var(--red);display:block}
+.links{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.link{background:var(--bg);padding:24px;display:grid;gap:8px;min-width:0}
+.link .v{font-size:clamp(17px,2.2vw,22px);font-weight:500;word-break:break-all}
+.link .row{display:flex;gap:10px;flex-wrap:wrap}
+.mini{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:8px 12px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer;text-decoration:none}
+.mini:hover{border-color:var(--red);color:var(--red)}
+@media (max-width:720px){.links{grid-template-columns:1fr}}
+footer{padding-block:28px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* reveal: visible at rest, slides in subtly */
+.rise{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.3s}
+@keyframes rise{from{transform:translateY(18px);opacity:.001}to{transform:none;opacity:1}}
+/* ===== MOTION LAYER ===== */
+/* scroll progress */
+#progress{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0);z-index:20;box-shadow:0 0 12px var(--red)}
+/* cursor glow (desktop) */
+#glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,color-mix(in srgb,var(--red) 20%,transparent) 0%,transparent 62%);transition:opacity .4s;opacity:0}
+body.has-mouse #glow{opacity:1}
+main,header,footer,.ticker{position:relative;z-index:1}
+/* hero letters */
+.hero h1 .ch{display:inline-block;animation:drop .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes drop{from{transform:translateY(60%) rotate(6deg);opacity:.001;filter:blur(8px)}to{transform:none;opacity:1;filter:none}}
+.hero h1 .r{text-shadow:0 0 40px color-mix(in srgb,var(--red) 45%,transparent)}
+.hero h1 .r.glitch{animation:glitch .35s steps(2) 1}
+@keyframes glitch{0%{text-shadow:4px 0 #00e5ff,-4px 0 var(--red);transform:translateX(2px)}50%{text-shadow:-5px 0 #00e5ff,5px 0 var(--red);transform:translateX(-3px) skewX(-4deg)}100%{text-shadow:0 0 40px color-mix(in srgb,var(--red) 45%,transparent);transform:none}}
+/* scroll reveal: content is visible at rest; entering view replays a slide */
+.reveal.in{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.sec-head h2.in{animation:wipe 1s cubic-bezier(.7,0,.2,1) both}
+@keyframes wipe{from{clip-path:inset(0 100% 0 0);transform:translateX(-24px)}to{clip-path:inset(0 0 0 0);transform:none}}
+/* project cards: tilt + spotlight */
+.p-body{transform-style:preserve-3d;transition:transform .25s ease-out}
+.pipeline .stage{position:relative;overflow:hidden}
+.pipeline .stage::after{content:"";position:absolute;inset:0;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--red) 22%,transparent),transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none}
+.pipeline .stage:hover::after{opacity:1}
+.stage .k{position:relative}
+.result{transition:transform .25s,border-color .25s}
+.result:hover{transform:translateY(-4px);border-color:var(--red)}
+.stack li{transition:background .2s,color .2s,transform .2s}
+.stack li:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
+/* big outlined marquee between sections */
+.bigmarquee{overflow:hidden;border-bottom:1px solid var(--line);padding-block:18px}
+.bigmarquee .row{display:flex;gap:40px;width:max-content;white-space:nowrap;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(56px,9vw,120px);line-height:1;will-change:transform}
+.bigmarquee .row span:nth-child(odd){-webkit-text-stroke:1.5px var(--fg);color:transparent}
+.bigmarquee .row span:nth-child(even){color:var(--red)}
+/* magnetic buttons */
+.btn{will-change:transform;transition:background .2s,color .2s,border-color .2s,transform .2s ease-out}
+/* skills hover */
+.skill{transition:background .3s}
+.skill:hover{background:var(--panel)}
+.skill:hover h3{letter-spacing:.2em}
+.skill h3{transition:letter-spacing .3s}
+.hop{transition:transform .3s}
+.hop:hover{transform:translateX(8px)}
+.contact h2 span{display:block;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{text-shadow:0 0 50px color-mix(in srgb,var(--red) 55%,transparent)}}
+@media (hover:none){#glow{display:none}}
+
+/* ===== AUTO DEMO: simulated cursor ===== */
+#fake-cursor{position:fixed;left:0;top:0;width:26px;height:26px;z-index:50;pointer-events:none;opacity:0;transition:opacity .4s;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6));will-change:transform}
+#fake-cursor svg{display:block;width:100%;height:100%;transition:transform .12s}
+#fake-cursor.down svg{transform:scale(.82)}
+body.demo #fake-cursor{opacity:1}
+body.demo, body.demo *{cursor:none}
+.ripple{position:fixed;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid var(--red);pointer-events:none;z-index:49;animation:ripple .6s ease-out forwards}
+@keyframes ripple{to{transform:scale(4.5);opacity:0}}
+.demo-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--red);background:transparent;color:var(--red);cursor:pointer;transition:background .2s,color .2s}
+.demo-btn:hover,body.demo .demo-btn{background:var(--red);color:#fff}
+.demo-btn .dot{width:7px;height:7px;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
+body.demo .demo-btn .dot{clip-path:none}
+.nav-right{display:flex;align-items:center;gap:24px}
+#demo-hint{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);background:var(--panel);border:1px solid var(--line);padding:8px 14px;opacity:0;transition:opacity .4s;pointer-events:none;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
+body.demo #demo-hint{opacity:1}
+/* hover states the demo cursor can trigger */
+.btn.primary.is-hover{background:transparent;color:var(--red)}
+.btn:not(.primary).is-hover{background:var(--fg);color:var(--bg)}
+nav ul a.is-hover{color:var(--fg)}
+.pipeline .stage.is-hover{background:#1c181b}
+.pipeline .stage.is-hover::after{opacity:1}
+.result.is-hover{transform:translateY(-4px);border-color:var(--red)}
+.stack li.is-hover{background:var(--red);color:#fff;transform:translateY(-2px)}
+.features li.is-hover{background:var(--panel)}
+.skill.is-hover{background:var(--panel)}
+.skill.is-hover h3{letter-spacing:.2em}
+.hop.is-hover{transform:translateX(8px)}
+.mini.is-hover{border-color:var(--red);color:var(--red)}
+.fact{transition:background .25s}
+.fact:hover,.fact.is-hover{background:var(--panel)}
+.cred-list li{transition:padding-left .25s}
+.cred-list li:hover,.cred-list li.is-hover{padding-left:10px}
+
+/* ===== BUILD MODE: the page assembles frame by frame ===== */
+.b-wait{opacity:0 !important;animation:none !important;transition:none !important}
+.b-done{animation:bIn .45s cubic-bezier(.2,.7,.2,1) both !important}
+@keyframes bIn{from{opacity:0;transform:translateY(14px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.b-done.b-wipe{animation:bWipe .55s cubic-bezier(.7,0,.2,1) both !important}
+@keyframes bWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.hero h1.b-done{animation:none !important}
+.hero h1.b-done .ch{animation:drop2 .8s cubic-bezier(.2,.8,.2,1) both}
+@keyframes drop2{from{transform:translateY(60%) rotate(6deg);opacity:.001;filter:blur(8px)}to{transform:none;opacity:1;filter:none}}
+.b-frame{position:absolute;z-index:40;pointer-events:none;border:1.5px dashed var(--c,var(--red));background:color-mix(in srgb,var(--c,var(--red)) 8%,transparent)}
+.b-frame.solid{border-style:solid;background:transparent;transition:opacity .5s .25s,border-color .4s;opacity:0}
+.b-frame span{position:absolute;left:-1.5px;bottom:100%;font-family:var(--mono);font-size:11px;line-height:1;padding:4px 6px;background:var(--c,var(--red));color:#0b0a0c;font-weight:600;white-space:nowrap}
+.b-frame i{position:absolute;right:-4px;bottom:-4px;width:7px;height:7px;background:var(--c,var(--red))}
+#b-log{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;width:min(360px,calc(100vw - 32px));background:color-mix(in srgb,var(--panel) 94%,transparent);border:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted);opacity:0;transform:translateY(10px);transition:opacity .4s,transform .4s;pointer-events:none}
+body.building #b-log{opacity:1;transform:none}
+#b-log header{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);color:var(--fg)}
+#b-log header b{color:var(--red);font-weight:600}
+#b-log ol{list-style:none;margin:0;padding:8px 12px;display:grid;gap:3px;min-height:118px}
+#b-log li{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#b-log li.ok::before{content:"✓ ";color:#4ade80}
+#b-log li.run::before{content:"› ";color:var(--red)}
+#b-log .bar{height:2px;background:var(--red);transform-origin:0 50%;transform:scaleX(0);transition:transform .3s}
+body.building #demo-hint{opacity:0}
+.agent-cursor{position:fixed;left:0;top:0;width:26px;height:26px;z-index:50;pointer-events:none;opacity:0;transition:opacity .4s;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6));will-change:transform}
+.agent-cursor svg{display:block;width:100%;height:100%;transition:transform .12s}
+.agent-cursor.down svg{transform:scale(.82)}
+body.building .agent-cursor{opacity:1}
+.agent-cursor svg path,#fake-cursor svg path{fill:var(--c,#fff)}
+body:not(.building) #fake-cursor svg path{fill:#fff}
+.agent-tag{position:absolute;left:20px;top:22px;font-family:var(--mono);font-style:normal;font-size:11px;font-weight:600;line-height:1;padding:4px 7px;background:var(--c,var(--red));color:#0b0a0c;white-space:nowrap;opacity:0;transition:opacity .3s}
+body.building .agent-tag{opacity:1}
+#b-log li[data-who]::after{content:" · " attr(data-who);color:var(--c)}
+.pipeline,.features,.facts,.skills,.links{transition:background .6s,border-color .6s}
+body.building .pipeline,body.building .features,body.building .facts,body.building .skills,body.building .links{background:transparent;border-color:transparent}
+body.building .pipeline .stage,body.building .features li,body.building .fact,body.building .skill,body.building .link{outline:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){.rise,.ticker-track,.hero h1 .ch,.reveal.in,.sec-head h2.in,.contact h2 span{animation:none}html{scroll-behavior:auto}#glow{display:none}}
+</style>
 </head>
 <body>
+<div id="progress" aria-hidden="true"></div>
+<div id="glow" aria-hidden="true"></div>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">VTV<span>.</span>INH</a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="demo-btn" id="demo-btn" type="button"><span class="dot"></span><span id="demo-label">Auto demo</span></button>
+    </div>
+  </div>
+</nav>
+<div id="fake-cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 2 L3 19 L7.5 14.8 L10.6 21.5 L13.6 20.2 L10.6 13.6 L16.8 13.6 Z" fill="#ffffff" stroke="#0b0a0c" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+<div id="demo-hint" aria-hidden="true">Auto demo · move the mouse or scroll to take over</div>
+<div id="b-log" aria-hidden="true"><header><span><b>●</b> vinh-agent · building portfolio</span><span id="b-count">0%</span></header><ol id="b-lines"></ol><div class="bar" id="b-bar"></div></div>
 
-    <nav class="navbar">
-        <div class="container nav-content">
-            <a href="#top" class="nav-brand">VU THE VINH</a> 
-            <ul class="nav-links">
-                <li class="nav-link"><a href="#skills">SKILLS</a></li>
-                <li class="nav-link"><a href="#experiences">EXPERIENCE</a></li>
-                <li class="nav-link"><a href="#education">EDUCATION</a></li>
-                <li class="nav-link"><a href="#projects">PROJECTS</a></li>
-                <li class="nav-link"><a href="#achievements">ACHIEVEMENTS</a></li> 
-                <li class="nav-link"><a href="#contact">CONTACT</a></li>
+<header class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="label rise"><b>●</b> Online · Hanoi, Vietnam · Open to AI &amp; data roles</div>
+    <div class="hero-stage">
+      <div class="hero-word" aria-hidden="true">Portfolio</div>
+      <div class="hero-left">
+        <p class="hello">Hello, I'm</p>
+        <h1 class="rise d1"><span class="o">Vu The</span><span class="r">Vinh.</span></h1>
+        <p class="roles">AI &amp; Data Builder<br>Network Administrator</p>
+      </div>
+      <figure class="hero-photo rise d2">
+        <img src="images/vinh-cutout.webp" alt="Vu The Vinh in a VTV polo shirt" width="950" height="792">
+      </figure>
+      <ul class="hero-side">
+        <li><b>3.62</b><span>GPA · Greenwich</span></li>
+        <li><b>Top 20</b><span>FPT Edu Hackathon</span></li>
+        <li><b>VTV</b><span>Network Admin</span></li>
+      </ul>
+    </div>
+    <div class="hero-row rise d2">
+      <p>Computer Science student at the University of Greenwich and network administrator at Vietnam Television. I keep enterprise networks running by day and build <em>AI systems, data pipelines and games</em> that turn raw, messy data into something people can use and play.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See projects →</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span><b>GPA 3.62</b> / 4.0</span><span>FPT Edu Hackathon · <b>Top 20</b> nationwide</span><span><b>CCNA</b> certified</span><span>Duplicate news cut by <b>85%</b></span><span>Unity game · <b>+61% FPS</b> · <b>38/38</b> tests</span><span>Network Admin @ <b>VTV</b></span><span><b>Microsoft</b> Ambassador</span><span>Top 18 national ambassador · <b>IELTS Online Test</b></span>
+    <span><b>GPA 3.62</b> / 4.0</span><span>FPT Edu Hackathon · <b>Top 20</b> nationwide</span><span><b>CCNA</b> certified</span><span>Duplicate news cut by <b>85%</b></span><span>Unity game · <b>+61% FPS</b> · <b>38/38</b> tests</span><span>Network Admin @ <b>VTV</b></span><span><b>Microsoft</b> Ambassador</span><span>Top 18 national ambassador · <b>IELTS Online Test</b></span>
+  </div>
+</div>
+
+<main>
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label"><b>hop 01</b> / about</div>
+        <h2>From packets <span>to models.</span></h2>
+      </div>
+      <div class="about">
+        <div></div>
+        <p>I work across two layers most people keep separate. At VTV's Technology and Transmission Center I help monitor and troubleshoot the network that carries national broadcast data, where uptime is not optional.</p>
+        <p>In my projects I use that same discipline on data: scraping, cleaning, embedding, clustering and evaluating, with clear metrics at every step. I lead teams, speak in public, and like problems that need both infrastructure and intelligence.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="n">3.62<small>/4</small></div><div class="t">GPA, BSc Computer Science, final year</div></div>
+        <div class="fact"><div class="n">Top <i>20</i></div><div class="t">FPT Edu Hackathon, nationwide</div></div>
+        <div class="fact"><div class="n"><i>1,000+</i></div><div class="t">News articles processed per day</div></div>
+        <div class="fact"><div class="n">18K<i>+</i></div><div class="t">Lines of C# in a shipped Unity game</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bigmarquee" aria-hidden="true"><div class="row" data-speed="1"><span>Data</span><span>Network</span><span>AI</span><span>Games</span><span>Data</span><span>Network</span><span>AI</span><span>Games</span><span>Data</span><span>Network</span></div></div>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label"><b>hop 02</b> / selected work</div>
+        <h2>Raw data. <span>Real results.</span></h2>
+      </div>
+
+      <article class="project">
+        <div class="p-meta">
+          <div class="date">07 – 11 / 2026</div>
+          <span class="badge">Final year project</span>
+          <div class="label">Unity 6 · C# · 219 commits</div>
+        </div>
+        <div class="p-body">
+          <h3>VietUrban Supermarket Simulator</h3>
+          <p class="role">A first-person management game where you run a convenience store on a busy Vietnamese street. Stock shelves, set prices and serve the checkout, then ride a motorbike to deliver orders across a 12-block district while the weather, the traffic and nine kinds of AI agents shape your day.</p>
+          <div class="pipeline">
+            <div class="stage"><div class="k">LAYER 1 · GAME AI</div><h4>Nine kinds of agent</h4><p>Customers run a state machine: browse, judge prices, queue, pay or steal, then rate the store 1–5 stars. Shelf stockers pick the most urgent shelf by utility score; guards chase thieves; cleaners find the nearest mess.</p></div>
+            <div class="stage"><div class="k">LAYER 2 · CITY</div><h4>A living Vietnamese street</h4><p>14 traffic vehicles on a road graph, ambulances and traffic police with Vietnamese plates, up to 22 pedestrians, 73 delivery addresses, 5 weather types across 4 seasons.</p></div>
+            <div class="stage"><div class="k">LAYER 3 · ECONOMY</div><h4>Demand that reacts</h4><p>10 product groups with demand from 0.4 to 2.5 by hour, weather, temperature, season and weekday. Fresh food expires, ratings move footfall ±30%, and stats track revenue by day, week and month.</p></div>
+          </div>
+          <ul class="features">
+            <li><b>Story opening</b>A one-minute cutscene about Grandma Lan's old grocery, with film-grade flashback and a letter the player answers.</li>
+            <li><b>Random events</b>A three-person theft gang with alarm and slow-motion chase, hygiene inspectors and tour groups of 8 customers.</li>
+            <li><b>Store that grows</b>Start in one small room and unlock four more sections, a warehouse and two extensions from Lv2 to Lv5.</li>
+            <li><b>Vehicles</b>Buy a C125 scooter, a Classic Sedan or a Sports Coupe, with third- and first-person driving cameras.</li>
+            <li><b>Balanced for new players</b>Playtest logs showed day one at −$165. After retuning prices, rent, wages and the XP curve, a typical day ends around +$71.</li>
+            <li><b>Tested &amp; measured</b>38 automated tests across 184,800 demand combinations, plus a custom FpsLogger that writes FPS, 1% lows and GC to CSV.</li>
+          </ul>
+          <div class="results">
+            <div class="result"><b data-count="61" data-prefix="+" data-suffix="%">+61%</b><span>average FPS (71 → 114)</span></div>
+            <div class="result"><b data-count="18" data-prefix="×">×18</b><span>1% low in storms (4.3 → 77.9)</span></div>
+            <div class="result"><b data-count="38" data-suffix="/38">38/38</b><span>automated tests pass</span></div>
+            <div class="result"><b data-count="23">23</b><span>bugs fixed at root cause</span></div>
+            <div class="result"><b data-count="18000" data-suffix="+">18,000+</b><span>lines of C#</span></div>
+          </div>
+          <ul class="stack"><li>Unity 6</li><li>C#</li><li>URP</li><li>NavMesh / A*</li><li>State machines</li><li>Utility AI</li><li>Unity Test Framework</li><li>JSON save system</li><li>21 Editor tools</li><li>Git / GitHub</li></ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
+          <div class="date">06 / 2024</div>
+          <span class="badge">Top 20 nationwide</span>
+          <div class="label">FPT Edu Hackathon</div>
+        </div>
+        <div class="p-body">
+          <h3>Automated Daily News Aggregator</h3>
+          <p class="role">Candidate &amp; team representative. An AI pipeline that collects 1,000+ breaking news articles a day from VnExpress, Tuổi Trẻ and Thanh Niên, groups duplicates and writes short summaries.</p>
+          <div class="pipeline">
+            <div class="stage"><div class="k">STEP 1 · ETL</div><h4>Scrape &amp; structure</h4><p>Python scrapers (BeautifulSoup, Selenium) pull RSS and web sources, clean unstructured text and load it into PostgreSQL.</p></div>
+            <div class="stage"><div class="k">STEP 2 · VECTORS</div><h4>Embed &amp; deduplicate</h4><p>PhoBERT embeddings with cosine-similarity search in pgvector group related stories automatically.</p></div>
+            <div class="stage"><div class="k">STEP 3 · LLM</div><h4>Classify &amp; summarize</h4><p>GPT-3.5-turbo with custom prompts handles zero-shot topic classification and concise summaries.</p></div>
+          </div>
+          <div class="results">
+            <div class="result"><b data-count="85" data-prefix="−" data-suffix="%">−85%</b><span>duplicate entries</span></div>
+            <div class="result"><b data-count="92" data-suffix="%">92%</b><span>topic accuracy</span></div>
+            <div class="result"><b data-count="80" data-prefix="−" data-suffix="%">−80%</b><span>manual curation time</span></div>
+          </div>
+          <ul class="stack"><li>Python</li><li>PhoBERT</li><li>OpenAI API</li><li>PostgreSQL + pgvector</li><li>Scikit-learn</li><li>BeautifulSoup</li><li>Selenium</li><li>Git</li></ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label"><b>hop 03</b> / traceroute</div>
+        <h2>Experience <span>&amp; education.</span></h2>
+      </div>
+      <div class="trace">
+        <div class="label mono">$ traceroute vinh</div>
+        <ol class="hops">
+          <li class="hop live">
+            <div class="ms">06/2025 — present</div>
+            <h3>Network Administration</h3>
+            <p class="org">Vietnam Television (VTV) · Technology and Transmission Center</p>
+            <ul>
+              <li>Help manage, operate and monitor enterprise IT network infrastructure and core systems.</li>
+              <li>Troubleshoot system incidents to keep data transmission stable, available and secure.</li>
+              <li>Work with senior engineers to improve internal network operating procedures.</li>
             </ul>
+          </li>
+          <li class="hop">
+            <div class="ms">2022 — 2026 · final year</div>
+            <h3>BSc Computer Science</h3>
+            <p class="org">University of Greenwich · GPA 3.62 / 4.0</p>
+            <ul>
+              <li>Focus on software engineering, algorithms, database management and system architecture.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label"><b>hop 04</b> / stack</div>
+        <h2>Tools <span>I use.</span></h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3>Languages</h3><p>Python, Java, PHP, SQL, JavaScript, C#, C</p></div>
+        <div class="skill"><h3>Data, cloud &amp; AI</h3><p>Microsoft SQL Server, Azure SQL, PostgreSQL with vector search, Power BI</p></div>
+        <div class="skill"><h3>Infrastructure</h3><p>Network administration, routing &amp; switching (CCNA), troubleshooting, system security</p></div>
+        <div class="skill"><h3>Development</h3><p>Git / GitHub, local server testing, data modeling</p></div>
+        <div class="skill"><h3>Working with people</h3><p>Project management, public speaking, cross-functional collaboration, adaptability</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="label"><b>hop 05</b> / beyond code</div>
+        <h2>Certified. <span>Out front.</span></h2>
+      </div>
+      <div class="creds">
+        <div>
+          <h3 class="label">Certifications &amp; training</h3>
+          <ul class="cred-list">
+            <li><strong>CCNA, Cisco Certified Network Associate</strong><span>Awarded by BKACAD · routing, switching and network infrastructure</span></li>
+            <li><strong>Data Analysis Program</strong><span>Rikkei Education &amp; BK Fintech · Python, SQL and analytics workflows</span></li>
+          </ul>
         </div>
-    </nav>
-
-    <header class="hero" id="top">
-        <div class="container">
-            <img src="images/avatar.jpg" alt="Vu The Vinh Photo" class="profile-img">
-            <h1>VU THE VINH</h1>
-            <p class="tagline">Final-year Computer Science Student | Data & Software Development</p>
-            
-            <div class="cta-group">
-                <a href="URL_TO_YOUR_CV.pdf" class="cta-button primary-cta">
-                    <i class="fas fa-download"></i> DOWNLOAD CV
-                </a>
-                <a href="#contact" class="cta-button secondary-cta">
-                    <i class="fas fa-paper-plane"></i> CONTACT ME
-                </a>
-            </div>
-
-            <div class="social-icons">
-                <a href="LINK_LINKEDIN" class="social-icon" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="LINK_GITHUB" class="social-icon" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            
+        <div>
+          <h3 class="label">Leadership</h3>
+          <ul class="cred-list">
+            <li><strong>Microsoft Ambassador</strong><span>Microsoft · representing Microsoft technology and learning programs in the student and developer community</span></li>
+            <li><strong>National Ambassador, IELTS Online Test</strong><span>Intergreat Group · one of 18 ambassadors nationwide; led communication campaigns and community engagement</span></li>
+            <li><strong>Media Ambassador, Entrepreneurship at VinUniversity</strong><span>E-Lab · brand promotion, media outreach and event coordination for the startup ecosystem</span></li>
+          </ul>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <section id="about" class="content-section" style="display:none;">
-        <div class="container">
-            <h2 data-aos="fade-down">ABOUT ME</h2>
-            <p class="section-description" data-aos="fade-up" data-aos-delay="100" style="max-width: 900px; margin: 0 auto 30px;">
-                Final-year Computer Science student at the University of Greenwich (Vietnam campus) with strong academic performance (GPA: 3.7/4.0) and hands-on experience in software development, data analytics, and cybersecurity. Demonstrated leadership as team leader in multiple academic projects and served as ambassador for prestigious organizations and university programs. Passionate about research and teaching, with a long-term goal of pursuing an academic career.
-            </p>
-            <p style="font-weight: 600;">Email: vinhvu20102005@gmail.com | Phone: +84869048289</p>
-            <p style="font-weight: 600;">LinkedIn: <a href="https://www.linkedin.com/in/vinh-v%C5%A9-533610304/" target="_blank">linkedin.com/in/vinh-vũ-533610304/</a></p>
+  <div class="bigmarquee" aria-hidden="true"><div class="row" data-speed="-1"><span>Let's build</span><span>Something real</span><span>Let's build</span><span>Something real</span><span>Let's build</span><span>Something real</span></div></div>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="label" style="margin-bottom:20px"><b>hop 06</b> / destination reached</div>
+      <h2>Let's work <span>together.</span></h2>
+      <div class="links">
+        <div class="link">
+          <div class="label">Email</div>
+          <div class="v" id="email">vinhvu20102005@gmail.com</div>
+          <div class="row"><button class="mini" id="copy-email" type="button">Copy email</button></div>
         </div>
-    </section>
-
-    <section id="skills" class="content-section">
-        <div class="container">
-            <h2 data-aos="fade-down">TECHNICAL SKILLS</h2>
-            <div class="grid">
-                <div class="card skill-card" data-aos="fade-up" data-aos-delay="100"> 
-                    <h3>Programming Languages</h3>
-                    <p>Python, Java, PHP, HTML, CSS, C#, JavaScript</p>
-                </div>
-                <div class="card skill-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Data Analysis & BI Tools</h3>
-                    <p>Power BI Desktop, R Studio, SQL Server 2022, Google Analytics</p>
-                </div>
-                <div class="card skill-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Development Tools & IDEs</h3>
-                    <p>Visual Studio 2022, IntelliJ IDEA, Apache NetBeans IDE 20, Cursor, GitHub, Postman</p>
-                </div>
-                 <div class="card skill-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Cybersecurity & Others</h3>
-                    <p>Cisco Packet Tracer, Project Plan 365, Axure RP 11 (UI/UX), Zotero, Overleaf</p>
-                </div>
-            </div>
+        <div class="link">
+          <div class="label">LinkedIn</div>
+          <div class="v">linkedin.com/in/vinh-vũ-533610304</div>
+          <div class="row"><a class="mini" href="https://www.linkedin.com/in/vinh-v%C5%A9-533610304/" target="_blank" rel="noopener">Open profile ↗</a></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <section id="experiences" class="content-section">
-        <div class="container">
-            <h2 data-aos="fade-down">ACADEMIC & PUBLIC ENGAGEMENT</h2>
-            <div class="grid timeline-grid">
-                
-                <div class="card experience-card" data-aos="fade-right">
-                    <h3>National Campus Ambassador</h3>
-                    <div class="duration">InterGreat / IELTS Online Test | Mar 2023 - Sep 2024</div>
-                    <ul class="responsibilities">
-                        <li>Selected as one of 28 top university students nationwide based on academic and leadership excellence.</li>
-                        <li>Promoted digital learning platforms to students across Vietnam.</li>
-                    </ul>
-                </div>
-                
-                <div class="card experience-card" data-aos="fade-left">
-                    <h3>Academic Entrepreneurship Ambassador</h3>
-                    <div class="duration">VinUniversity | Sep 2024 - Aug 2025</div>
-                    <ul class="responsibilities">
-                        <li>Represented Greenwich Vietnam in a national program fostering innovation and academic entrepreneurship.</li>
-                        <li>Participated in intensive workshops with faculty and researchers.</li>
-                    </ul>
-                </div>
-                 <div class="card experience-card" data-aos="fade-right" data-aos-delay="200">
-                    <h3>Technical Broadcast Assistant (Freelance)</h3>
-                    <div class="duration">VTV2, Vietnam Television | Jan 2025 - Current</div>
-                    <ul class="responsibilities">
-                        <li>Supported live stream and broadcast setup for national education-focused programs.</li>
-                        <li>Handled camera equipment, audio input, and transmission during live events.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+  <div class="wrap label">
+    <span>© 2026 Vu The Vinh</span>
+    <span>Status: <b>200 OK</b></span>
+  </div>
+</footer>
 
-    <section id="education" class="content-section">
-        <div class="container">
-            <h2 data-aos="fade-up">EDUCATION</h2>
-             <div class="grid timeline-grid">
-                <div class="card experience-card" data-aos="zoom-in-up">
-                    <h3>Bachelor of Science in Computer Science</h3>
-                    <div class="duration">University of Greenwich (UK) - Greenwich Vietnam | Aug 2023 - Current</div>
-                    <p><strong>GPA: 3.7/4.0</strong> (Part of the London and South East University Group at University of Kent)</p>
-                </div>
-                <div class="card experience-card" data-aos="zoom-in-up" data-aos-delay="200">
-                    <h3>Data Analysis (Short-term Program)</h3>
-                    <div class="duration">Hanoi University of Science and Technology | Feb 2024 - Sep 2024</div>
-                    <p>Valedictorian of the 3-month Data Analysis training program.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+document.getElementById('copy-email').addEventListener('click', function(){
+  var btn=this, txt=document.getElementById('email').textContent;
+  function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},1600)}
+  try{
+    navigator.clipboard.writeText(txt).then(done,function(){sel()});
+  }catch(e){sel()}
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Press Ctrl+C'}
+});
 
-    <section id="projects" class="content-section" style="background-color: #f5f7fa;">
-        <div class="container">
-            <h2 data-aos="fade-down">RESEARCH PROJECTS</h2>
-            <div class="grid project-grid">
-                
-                <div class="card project-card" data-aos="fade-up">
-                    <h3>Web-based Q&A Platform</h3>
-                    <div class="duration">Web Programming 1 Project (Excellent Grade)</div>
-                    <p>Developed a Q&A web platform using **PHP, MySQL, and JavaScript**. Implemented secure user authentication and a responsive UI.</p>
-                    <a href="PROJECT_QA_LINK" class="project-link">View Details &rarr;</a>
-                </div>
-                
-                <div class="card project-card" data-aos="fade-up" data-aos-delay="150">
-                    <h3>Data & Web Analytics Research</h3>
-                    <div class="duration">Awarded Excellent Grade</div>
-                    <p>Analyzed web data to identify key revenue drivers and assessed marketing channel performance. Conducted correlation analysis on KPIs (Revenue, Transactions, Bounce Rate).</p>
-                    <a href="PROJECT_DATA_LINK" class="project-link">View Details &rarr;</a>
-                </div>
-                
-                <div class="card project-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>AI Ethics in Education</h3>
-                    <div class="duration">Intro to Computer Science Project (Excellent Grade)</div>
-                    <p>Researched ethical implications of **AI integration in educational systems**. Proposed solutions to protect user data and ensure responsible use of AI.</p>
-                    <a href="PROJECT_AI_LINK" class="project-link">View Details &rarr;</a>
-                </div>
-                
-                <div class="card project-card" data-aos="fade-up" data-aos-delay="450">
-                    <h3>Principles of Software Engineering</h3>
-                    <div class="duration">Team Leader Role</div>
-                    <p>Led a team of 5, contributing the majority of critical work for the final comprehensive research report. Coordinated team tasks and managed timeline.</p>
-                    <a href="PROJECT_SWE_LINK" class="project-link">View Details &rarr;</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="achievements" class="content-section" style="background-color: #f5f7fa;">
-        <div class="container">
-            <h2 data-aos="fade-down">ACADEMIC ACHIEVEMENTS</h2>
-            <div class="grid project-grid">
-                <div class="card project-card" data-aos="fade-right">
-                    <h3>Valedictorian of Data Analysis Program</h3>
-                    <div class="duration">Hanoi University of Science and Technology</div>
-                    <p>Achieved Valedictorian status in the 3-month Data Analysis training program.</p>
-                </div>
-                <div class="card project-card" data-aos="fade-left">
-                    <h3>Professional Project Management</h3>
-                    <div class="duration">Team Leader Role</div>
-                    <p>Led a team of 4 to successfully deliver a project with very high marks.</p>
-                </div>
-                <div class="card project-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Object Oriented Programming (OOP)</h3>
-                    <div class="duration">Achieved excellent grade</div>
-                    <p>Data and Web Analytics: Achieved excellent grade.</p>
-                </div>
-                <div class="card project-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Programming Foundations (Python)</h3>
-                    <div class="duration">Near-perfect score</div>
-                    <p>Mathematics for Computer Science: Near-perfect score.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+/* ===== motion layer ===== */
+(function(){
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still)return;
+  // hero letters drop in one by one
+  var d=0;
+  document.querySelectorAll('.hero h1 > span').forEach(function(line){
+    var t=line.textContent;line.textContent='';
+    t.split('').forEach(function(c){
+      var s=document.createElement('span');s.className='ch';s.textContent=c===' '?' ':c;
+      s.style.animationDelay=(0.15+d*0.045)+'s';d++;line.appendChild(s);
+    });
+  });
+  // occasional glitch on the red name
+  var red=document.querySelector('.hero h1 .r');
+  setInterval(function(){red.classList.remove('glitch');void red.offsetWidth;red.classList.add('glitch')},4200);
 
-    <footer id="contact" class="footer">
-        <div class="container">
-            <h3 style="color: white; margin-bottom: 20px;">CERTIFICATIONS</h3>
-             <p style="color: #ccc;">Google Analytics Certification | AI-Powered Performance Ads Certification</p>
-            
-            <p>&copy; 2025 Vu The Vinh. Built with passion.</p>
-            <p class="social-links">
-                </p>
-            <p>Email: vinhvu20102005@gmail.com</p>
-        </div>
-    </footer>
+  // scroll reveal
+  var targets=document.querySelectorAll('.sec-head h2, .fact, .project, .stage, .hop, .skill, .cred-list li, .link');
+  targets.forEach(function(el){if(!el.matches('.sec-head h2'))el.classList.add('reveal')});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  targets.forEach(function(el,i){io.observe(el)});
+  document.querySelectorAll('.pipeline').forEach(function(p){p.querySelectorAll('.stage').forEach(function(s,i){s.style.animationDelay=(i*.12)+'s'})});
+  document.querySelectorAll('.facts .fact, .skills .skill').forEach(function(s,i){s.style.animationDelay=((i%5)*.08)+'s'});
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1200, // Animation duration (ms)
-            once: true,     // Animate only once on scroll down
-        });
-    </script>
+  // count-up numbers
+  window.__countUp=function(el){cio.unobserve(el);run(el)};
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;cio.unobserve(e.target);run(e.target)})},{threshold:.6});
+  function run(el){
+    var end=parseFloat(el.dataset.count),dec=(el.dataset.count.split('.')[1]||'').length,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'',t0=null;
+    function step(ts){if(!t0)t0=ts;var k=Math.min((ts-t0)/1300,1),v=end*(1-Math.pow(1-k,3));el.textContent=pre+(dec?v.toFixed(dec):Math.round(v).toLocaleString('en-US'))+suf;if(k<1)requestAnimationFrame(step)}
+    requestAnimationFrame(step);
+  }
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el)});
 
-    <script src="script.js"></script>
+  // scroll progress + marquees driven by scroll
+  var bar=document.getElementById('progress'),rows=document.querySelectorAll('.bigmarquee .row');
+  function onScroll(){
+    var h=document.documentElement.scrollHeight-innerHeight,y=scrollY;
+    bar.style.transform='scaleX('+(h>0?y/h:0)+')';
+    rows.forEach(function(r){var sp=+r.dataset.speed,rect=r.getBoundingClientRect();var off=(rect.top-innerHeight)*0.35*sp;r.style.transform='translateX('+(sp>0?off:off-r.scrollWidth/3)+'px)'});
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  // cursor glow, card tilt, spotlight, magnetic buttons (mouse only)
+  if(matchMedia('(hover:hover)').matches){
+    var glow=document.getElementById('glow'),gx=0,gy=0,tx=0,ty=0;
+    addEventListener('mousemove',function(e){tx=e.clientX;ty=e.clientY;document.body.classList.add('has-mouse')});
+    (function loop(){gx+=(tx-gx)*.12;gy+=(ty-gy)*.12;glow.style.transform='translate('+gx+'px,'+gy+'px)';requestAnimationFrame(loop)})();
+    document.querySelectorAll('.p-body').forEach(function(c){
+      c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(1200px) rotateY('+(px*4)+'deg) rotateX('+(-py*4)+'deg)'});
+      c.addEventListener('mouseleave',function(){c.style.transform=''});
+    });
+    document.querySelectorAll('.stage').forEach(function(s){
+      s.addEventListener('mousemove',function(e){var r=s.getBoundingClientRect();s.style.setProperty('--mx',(e.clientX-r.left)+'px');s.style.setProperty('--my',(e.clientY-r.top)+'px')});
+    });
+    document.querySelectorAll('.btn').forEach(function(b){
+      b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.3)+'px,'+((e.clientY-r.top-r.height/2)*.4)+'px)'});
+      b.addEventListener('mouseleave',function(){b.style.transform=''});
+    });
+  }
+})();
+
+/* ===== AUTO DEMO: a cursor that slowly drives the page, like a screen recording ===== */
+(function(){
+  var cur=document.getElementById('fake-cursor'),btn=document.getElementById('demo-btn'),lbl=document.getElementById('demo-label');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var running=false,runId=0,cx=innerWidth*0.6,cy=innerHeight*0.55,hovered=null;
+  function place(){cur.style.transform='translate('+cx+'px,'+cy+'px)'}
+  place();
+  function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  var SPEED=0.5; // 1 = original pace, smaller = faster
+  function wait(ms,id){ms*=SPEED;return new Promise(function(res,rej){setTimeout(function(){id===runId?res():rej('stop')},ms)})}
+  function anim(ms,fn,id){ms*=SPEED;return new Promise(function(res,rej){var t0=performance.now();(function f(now){if(id!==runId)return rej('stop');var k=Math.min((now-t0)/ms,1);fn(ease(k),k);k<1?requestAnimationFrame(f):res()})(t0)})}
+  function emit(x,y){
+    var el=document.elementFromPoint(x,y);
+    var ev=new MouseEvent('mousemove',{clientX:x,clientY:y,bubbles:true});
+    (el||document.body).dispatchEvent(ev);
+    var card=el&&el.closest('.p-body');
+    document.querySelectorAll('.p-body').forEach(function(c){if(c!==card)c.style.transform=''});
+  }
+  function hover(el){
+    if(hovered&&hovered!==el){hovered.classList.remove('is-hover')}
+    hovered=el;if(el)el.classList.add('is-hover');
+  }
+  // move cursor along a gentle curve to a point
+  function moveTo(x,y,ms,id){
+    var sx=cx,sy=cy,dx=x-sx,dy=y-sy,bend=(Math.random()-.5)*0.25;
+    return anim(ms||900,function(e){cx=sx+dx*e-dy*bend*Math.sin(Math.PI*e);cy=sy+dy*e+dx*bend*Math.sin(Math.PI*e);place();emit(cx,cy)},id);
+  }
+  function target(el,fx,fy){var r=el.getBoundingClientRect();return{x:r.left+r.width*(fx==null?.5:fx),y:r.top+r.height*(fy==null?.5:fy)}}
+  function scrollToEl(el,ms,id,offset){
+    var r=el.getBoundingClientRect(),start=scrollY,max=document.documentElement.scrollHeight-innerHeight;
+    var end=Math.max(0,Math.min(max,start+r.top-(offset==null?innerHeight*0.22:offset)));
+    var dist=Math.abs(end-start);ms=ms||Math.min(2600,700+dist*1.1);
+    return anim(ms,function(e){window.scrollTo(0,start+(end-start)*e);emit(cx,cy)},id);
+  }
+  function scrollTo(y,ms,id){var s=scrollY;return anim(ms,function(e){window.scrollTo(0,s+(y-s)*e);emit(cx,cy)},id)}
+  async function visit(el,id,opt){
+    opt=opt||{};if(!el)return;
+    var p=target(el,opt.fx,opt.fy);
+    await moveTo(p.x,p.y,opt.ms||850,id);hover(el);
+    await wait(opt.dwell||650,id);
+  }
+  async function click(id){
+    cur.classList.add('down');var r=document.createElement('div');r.className='ripple';r.style.left=cx+'px';r.style.top=cy+'px';document.body.appendChild(r);
+    setTimeout(function(){r.remove()},700);await wait(160,id);cur.classList.remove('down');await wait(260,id);
+  }
+  async function sweep(list,id,opt){for(var i=0;i<list.length;i++)await visit(list[i],id,opt)}
+  var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+
+  async function tour(id){
+    await scrollTo(0,900,id);
+    await moveTo(innerWidth*.62,innerHeight*.5,700,id);
+    await wait(500,id);
+    // hero: drift over the name, then the nav, then press "See projects"
+    await visit($('.hero h1 .r'),id,{fx:.3,dwell:500});
+    await visit($('.hero h1 .r'),id,{fx:.8,ms:1100,dwell:400});
+    await visit($('.hero-photo'),id,{fx:.5,fy:.35,ms:900,dwell:1100});hover(null);
+    await sweep($$('.hero-side li'),id,{fx:.8,ms:600,dwell:350});hover(null);
+    if(innerWidth>640) await sweep($$('nav ul a'),id,{ms:520,dwell:260});
+    await visit($('.cta .btn:not(.primary)'),id,{dwell:500});
+    await visit($('.cta .btn.primary'),id,{dwell:600});
+    await click(id);hover(null);
+    // about
+    await scrollToEl($('#about .sec-head'),1800,id);
+    await sweep($$('.fact'),id,{ms:650,dwell:450});
+    hover(null);
+    // projects
+    var projects=$$('.project');
+    for(var p=0;p<projects.length;p++){
+      var pr=projects[p];
+      await scrollToEl(pr.querySelector('h3'),2000,id);
+      await visit(pr.querySelector('h3'),id,{fx:.15,dwell:700});
+      await scrollToEl(pr.querySelector('.pipeline'),1300,id,innerHeight*.28);
+      var st=pr.querySelectorAll('.stage');
+      for(var s=0;s<st.length;s++){await visit(st[s],id,{fy:.35,dwell:300});await visit(st[s],id,{fx:.75,fy:.7,ms:700,dwell:400})}
+      var feats=pr.querySelectorAll('.features li');
+      if(feats.length){await scrollToEl(feats[0],1200,id,innerHeight*.3);await sweep(feats,id,{ms:600,dwell:380})}
+      var res=pr.querySelector('.results');
+      await scrollToEl(res,1100,id,innerHeight*.45);
+      await sweep(pr.querySelectorAll('.result'),id,{ms:550,dwell:420});
+      var chips=pr.querySelectorAll('.stack li');
+      await sweep(Array.prototype.slice.call(chips,0,5),id,{ms:380,dwell:200});
+      hover(null);
+    }
+    // marquee + experience
+    await scrollToEl($('#experience .sec-head'),2200,id);
+    await sweep($$('.hop'),id,{fx:.25,fy:.2,ms:800,dwell:800});
+    hover(null);
+    // skills
+    await scrollToEl($('#skills .sec-head'),1800,id);
+    await sweep($$('.skill'),id,{ms:600,dwell:450});
+    hover(null);
+    // credentials
+    await scrollToEl($('#credentials .sec-head'),1800,id);
+    await sweep($$('.cred-list li'),id,{fx:.3,ms:600,dwell:450});
+    hover(null);
+    // contact
+    await scrollToEl($('#contact h2'),2200,id,innerHeight*.15);
+    await visit($('#contact h2 span'),id,{fx:.4,ms:1000,dwell:900});
+    await visit($('.links .link:nth-child(2) .mini'),id,{dwell:700});
+    await visit($('#copy-email'),id,{dwell:600});
+    await click(id);
+    var b=$('#copy-email');b.textContent='Copied';setTimeout(function(){b.textContent='Copy email'},1600);
+    await wait(1600,id);hover(null);
+    await moveTo(innerWidth*.55,innerHeight*.4,900,id);
+    await wait(1200,id);
+  }
+  /* ---- build: drag out a frame for each block, then fill it ---- */
+  var BUILD_SEL='nav .brand, nav .nav-right ul, .hero .label, .hero-word, .hero-photo, .hello, .hero h1, .roles, .hero-side li, .hero-row p, .hero .cta, .ticker, #about .sec-head .label, #about .sec-head h2, .about p, .fact, .bigmarquee, #projects .sec-head .label, #projects .sec-head h2, .project .p-meta, .project h3, .project .role, .stage, .features li, .result, .project .stack, #experience .sec-head .label, #experience .sec-head h2, .trace > .label, .hop, #skills .sec-head .label, #skills .sec-head h2, .skill, #credentials .sec-head .label, #credentials .sec-head h2, .creds h3, .cred-list li, #contact > .wrap > .label, #contact h2, .link, footer .wrap';
+  var SMALL='.fact,.features li,.result,.stack,.cred-list li,.label,.skill,.link,.brand,nav ul,.creds h3';
+  var lines=document.getElementById('b-lines'),bar=document.getElementById('b-bar'),pct=document.getElementById('b-count');
+  function blocks(){return $$(BUILD_SEL).filter(function(el){return el.getClientRects().length&&!el.closest('.b-skip')})}
+  function tagOf(el){var t=el.tagName.toLowerCase(),c=el.classList[0];if(el.id)return t+'#'+el.id;return c&&c!=='b-wait'?t+'.'+c:t}
+  function what(el){
+    if(el.matches('h1,h2,h3'))return 'write '+tagOf(el)+' "'+el.textContent.trim().replace(/\s+/g,' ').slice(0,26)+'"';
+    if(el.matches('.stage'))return 'add '+tagOf(el)+' · '+(el.querySelector('h4')||el).textContent.trim().slice(0,22);
+    if(el.matches('.result'))return 'bind metric '+el.textContent.trim().replace(/\s+/g,' ').slice(0,24);
+    if(el.matches('p'))return 'write copy '+tagOf(el);
+    return 'render '+tagOf(el);
+  }
+  function log(txt,cls){var li=document.createElement('li');li.className=cls||'run';li.textContent=txt;lines.appendChild(li);while(lines.children.length>6)lines.removeChild(lines.firstChild);return li}
+  function clearBuild(){
+    $$('.b-frame').forEach(function(f){f.remove()});
+    $$('.b-wait').forEach(function(el){el.classList.remove('b-wait');el.classList.add('b-done')});
+    document.body.classList.remove('building');
+  }
+  /* ---- several agents build in parallel, each with its own cursor ---- */
+  var AGENTS=[{name:'agent-1 · layout',c:'#e3242b'},{name:'agent-2 · content',c:'#22d3ee'},{name:'agent-3 · data',c:'#fbbf24'},{name:'agent-4 · style',c:'#4ade80'}];
+  var crew=null,done=0,total=0;
+  function mkCrew(){
+    if(crew)return crew;
+    crew=AGENTS.map(function(a,i){
+      var el=i===0?cur:document.createElement('div');
+      if(i>0){el.className='agent-cursor';el.innerHTML=cur.querySelector('svg').outerHTML;document.body.appendChild(el)}
+      var tag=document.createElement('em');tag.className='agent-tag';tag.textContent=a.name;el.appendChild(tag);
+      el.style.setProperty('--c',a.c);
+      var c={el:el,name:a.name,color:a.c,x:innerWidth*(.2+.2*i),y:innerHeight*(.3+.12*(i%2)),main:i===0};
+      return c;
+    });
+    return crew;
+  }
+  function cPlace(c){c.el.style.transform='translate('+c.x+'px,'+c.y+'px)';if(c.main){cx=c.x;cy=c.y}}
+  function cMove(c,x,y,ms,id){
+    var sx=c.x,sy=c.y,dx=x-sx,dy=y-sy,bend=(Math.random()-.5)*0.3;
+    return anim(ms,function(e){c.x=sx+dx*e-dy*bend*Math.sin(Math.PI*e);c.y=sy+dy*e+dx*bend*Math.sin(Math.PI*e);cPlace(c)},id);
+  }
+  function logA(c,txt){var li=log(txt);li.style.setProperty('--c',c.color);li.dataset.who=c.name.split(' ')[0];return li}
+  async function buildOne(el,c,id){
+    var small=el.matches(SMALL);
+    var r=el.getBoundingClientRect();
+    var pad=6,x0=r.left-pad,y0=r.top-pad,w=r.width+pad*2,h=r.height+pad*2;
+    var li=logA(c,what(el));
+    await cMove(c,x0,y0,small?580:940,id);
+    c.el.classList.add('down');
+    var f=document.createElement('div');f.className='b-frame';f.style.setProperty('--c',c.color);
+    f.style.left=(x0+scrollX)+'px';f.style.top=(y0+scrollY)+'px';f.style.width='0px';f.style.height='0px';
+    f.innerHTML='<span>&lt;'+tagOf(el)+'&gt; '+Math.round(r.width)+'×'+Math.round(r.height)+'</span><i></i>';
+    document.body.appendChild(f);
+    await anim(small?640:1100,function(e){var cw=w*e,ch=h*e;f.style.width=cw+'px';f.style.height=ch+'px';c.x=x0+cw;c.y=y0+ch;cPlace(c)},id);
+    c.el.classList.remove('down');
+    el.classList.remove('b-wait');
+    if(el.matches('h2,h3,.hero-row p,.about p,.role,.label,.hero-word,.roles'))el.classList.add('b-wipe');
+    el.classList.add('b-done');
+    el.querySelectorAll('[data-count]').forEach(function(n){window.__countUp&&window.__countUp(n)});
+    f.classList.add('solid');setTimeout(function(){f.remove()},900);
+    li.className='ok';done++;
+    var p=Math.round(done/total*100);bar.style.transform='scaleX('+(p/100)+')';pct.textContent=p+'%';
+    await wait(small?150:320,id);
+  }
+  async function build(id){
+    lines.innerHTML='';bar.style.transform='scaleX(0)';pct.textContent='0%';
+    var team=mkCrew();
+    team.forEach(function(c,i){if(!c.main){c.x=innerWidth*(.25+.18*i);c.y=innerHeight*(.35+.15*(i%2));cPlace(c)}else{c.x=cx;c.y=cy}});
+    var pending=blocks();done=0;total=pending.length;
+    pending.forEach(function(el){el.classList.remove('b-done','b-wipe');el.classList.add('b-wait')});
+    document.body.classList.add('building');
+    await scrollTo(0,700,id);
+    log('npx create-portfolio vu-the-vinh','ok');
+    log('load CV · 2026_AI_Course_VuTheVinh.pdf','ok');
+    log('spawn 4 agents · layout, content, data, style','ok');
+    await wait(700,id);
+    while(pending.length){
+      var first=pending[0],r=first.getBoundingClientRect();
+      if(r.top<70||r.top>innerHeight*.45)await scrollToEl(first,1300,id,90);
+      var bottom=innerHeight-150;
+      var batch=pending.filter(function(el,i){var q=el.getBoundingClientRect();return i===0||(q.top>=60&&q.bottom<=bottom)});
+      pending=pending.filter(function(el){return batch.indexOf(el)<0});
+      await Promise.all(team.map(function(c,k){
+        return (async function(){await wait(k*120,id);while(batch.length){var el=batch.shift();await buildOne(el,c,id)}})();
+      }));
+    }
+    log('merge 4 branches · deploy → 200 OK','ok');
+    await wait(1400,id);
+    document.body.classList.remove('building');
+    await wait(600,id);
+  }
+  async function loop(id){
+    try{while(id===runId){await build(id);await tour(id)}}catch(e){}
+  }
+  function start(){
+    if(running)return;running=true;runId++;
+    document.documentElement.style.scrollBehavior='auto';
+    document.body.classList.add('demo','has-mouse');lbl.textContent='Stop demo';
+    loop(runId);
+  }
+  function stop(){
+    if(!running)return;running=false;runId++;hover(null);clearBuild();cur.classList.remove('down');document.querySelectorAll('.agent-cursor').forEach(function(a){a.classList.remove('down')});
+    document.documentElement.style.scrollBehavior='';
+    document.body.classList.remove('demo');lbl.textContent='Auto demo';
+    document.querySelectorAll('.p-body').forEach(function(c){c.style.transform=''});
+    armIdle();
+  }
+  btn.addEventListener('click',function(e){e.stopPropagation();running?stop():start()});
+  // the viewer takes over the moment they really move, scroll, tap or type
+  var moved=0;
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(e){if(e.isTrusted&&running&&!btn.contains(e.target))stop()},{passive:true,capture:true})});
+  addEventListener('mousemove',function(e){if(!e.isTrusted||!running)return;moved+=Math.abs(e.movementX||0)+Math.abs(e.movementY||0);if(moved>40){moved=0;stop()}},{capture:true});
+  // start by itself after the viewer has been idle for a while
+  var idleT;
+  function armIdle(){clearTimeout(idleT);if(reduce)return;idleT=setTimeout(function(){if(!running&&!document.hidden)start()},running?0:9000)}
+  ['mousemove','wheel','touchstart','keydown','scroll'].forEach(function(t){addEventListener(t,function(e){if(e.isTrusted&&!running)armIdle()},{passive:true})});
+  if(!reduce) idleT=setTimeout(function(){if(!running&&!document.hidden)start()},3500);
+  document.addEventListener('visibilitychange',function(){if(document.hidden)stop()});
+})();
+
+/* hero: network nodes with packets travelling the links */
+(function(){
+  var c=document.getElementById('net'),x=c.getContext('2d'),W,H,nodes=[],edges=[],packets=[],dpr=Math.min(window.devicePixelRatio||1,2);
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function build(){
+    W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.max(14,Math.round(W*H/26000));nodes=[];edges=[];
+    for(var i=0;i<n;i++)nodes.push({x:Math.random()*W,y:Math.random()*H});
+    for(var i=0;i<n;i++){
+      var d=nodes.map(function(m,j){return{j:j,d:Math.hypot(m.x-nodes[i].x,m.y-nodes[i].y)}}).sort(function(a,b){return a.d-b.d});
+      for(var k=1;k<=2;k++)if(d[k]&&d[k].j>i)edges.push([i,d[k].j]);
+    }
+    packets=[];for(var p=0;p<Math.round(edges.length/3);p++)packets.push({e:Math.floor(Math.random()*edges.length),t:Math.random(),s:.002+Math.random()*.006});
+  }
+  function draw(){
+    x.clearRect(0,0,W,H);
+    x.strokeStyle='rgba(227,36,43,0.18)';x.lineWidth=1;
+    edges.forEach(function(e){var a=nodes[e[0]],b=nodes[e[1]];x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()});
+    x.fillStyle='rgba(241,236,234,0.35)';
+    nodes.forEach(function(n){x.fillRect(n.x-1.5,n.y-1.5,3,3)});
+    x.fillStyle='#e3242b';
+    packets.forEach(function(p){
+      var e=edges[p.e];if(!e)return;var a=nodes[e[0]],b=nodes[e[1]];
+      x.fillRect(a.x+(b.x-a.x)*p.t-2,a.y+(b.y-a.y)*p.t-2,4,4);
+      if(!still){p.t+=p.s;if(p.t>1){p.t=0;p.e=Math.floor(Math.random()*edges.length)}}
+    });
+    if(!still)requestAnimationFrame(draw);
+  }
+  build();draw();
+  var to;window.addEventListener('resize',function(){clearTimeout(to);to=setTimeout(function(){build();if(still)draw()},200)});
+})();
+</script>
 </body>
 </html>

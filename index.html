@@ -641,7 +641,7 @@ document.getElementById('copy-email').addEventListener('click', function(){
   function place(){cur.style.transform='translate('+cx+'px,'+cy+'px)'}
   place();
   function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
-  var SPEED=0.5; // 1 = original pace, smaller = faster
+  var SPEED=0.68; // 1 = original pace, smaller = faster
   function wait(ms,id){ms*=SPEED;return new Promise(function(res,rej){setTimeout(function(){id===runId?res():rej('stop')},ms)})}
   function anim(ms,fn,id){ms*=SPEED;return new Promise(function(res,rej){var t0=performance.now();(function f(now){if(id!==runId)return rej('stop');var k=Math.min((now-t0)/ms,1);fn(ease(k),k);k<1?requestAnimationFrame(f):res()})(t0)})}
   function emit(x,y){

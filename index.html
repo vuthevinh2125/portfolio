@@ -144,6 +144,8 @@ section{padding-block:96px;border-bottom:1px solid var(--line)}
 @media (max-width:820px){.features{grid-template-columns:1fr}}
 .stack{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
 .stack li{font-family:var(--mono);font-size:12px;padding:5px 10px;background:var(--panel);border:1px solid var(--line);color:var(--fg)}
+.p-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.features li code{font-family:var(--mono);font-size:12px;color:var(--fg)}
 @media (max-width:820px){.project{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr}}
 
 /* EXPERIENCE — traceroute */
@@ -363,8 +365,8 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span><b>GPA 3.62</b> / 4.0</span><span>FPT Edu Hackathon · <b>Top 20</b> nationwide</span><span><b>CCNA</b> certified</span><span>Duplicate news cut by <b>85%</b></span><span>Unity game · <b>+61% FPS</b> · <b>38/38</b> tests</span><span>Network Admin @ <b>VTV</b></span><span><b>Microsoft</b> Ambassador</span><span>Top 18 national ambassador · <b>IELTS Online Test</b></span>
-    <span><b>GPA 3.62</b> / 4.0</span><span>FPT Edu Hackathon · <b>Top 20</b> nationwide</span><span><b>CCNA</b> certified</span><span>Duplicate news cut by <b>85%</b></span><span>Unity game · <b>+61% FPS</b> · <b>38/38</b> tests</span><span>Network Admin @ <b>VTV</b></span><span><b>Microsoft</b> Ambassador</span><span>Top 18 national ambassador · <b>IELTS Online Test</b></span>
+    <span><b>GPA 3.62</b> / 4.0</span><span>FPT Edu Hackathon · <b>Top 20</b> nationwide</span><span><b>CCNA</b> certified</span><span>Duplicate news cut by <b>85%</b></span><span>Unity game · <b>+61% FPS</b> · <b>38/38</b> tests</span><span>WebGL · <b>22,994</b> instanced stones</span><span>AI agent · <b>20</b>-case eval</span><span>Network Admin @ <b>VTV</b></span><span><b>Microsoft</b> Ambassador</span><span>Top 18 national ambassador · <b>IELTS Online Test</b></span>
+    <span><b>GPA 3.62</b> / 4.0</span><span>FPT Edu Hackathon · <b>Top 20</b> nationwide</span><span><b>CCNA</b> certified</span><span>Duplicate news cut by <b>85%</b></span><span>Unity game · <b>+61% FPS</b> · <b>38/38</b> tests</span><span>WebGL · <b>22,994</b> instanced stones</span><span>AI agent · <b>20</b>-case eval</span><span>Network Admin @ <b>VTV</b></span><span><b>Microsoft</b> Ambassador</span><span>Top 18 national ambassador · <b>IELTS Online Test</b></span>
   </div>
 </div>
 
@@ -428,6 +430,39 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
             <div class="result"><b data-count="18000" data-suffix="+">18,000+</b><span>lines of C#</span></div>
           </div>
           <ul class="stack"><li>Unity 6</li><li>C#</li><li>URP</li><li>NavMesh / A*</li><li>State machines</li><li>Utility AI</li><li>Unity Test Framework</li><li>JSON save system</li><li>21 Editor tools</li><li>Git / GitHub</li></ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
+          <div class="date">11 / 2026</div>
+          <span class="badge">Solo project</span>
+          <div class="label">three.js · WebGL · Claude API</div>
+        </div>
+        <div class="p-body">
+          <h3>Giza: The Great Pyramid in 3D</h3>
+          <p class="role">A browser model of Khufu's pyramid built from 22,994 individual stones placed to archaeological survey data. Take it apart layer by layer, watch twenty years of construction, walk the passages at true scale, rediscover the Big Void with simulated muons, and ask an AI guide that drives the scene itself.</p>
+          <div class="pipeline">
+            <div class="stage"><div class="k">LAYER 1 · RENDERING</div><h4>Solid cross-sections</h4><p>Every stone is drawn into the stencil buffer with an invert op; odd parity means "inside rock", so the cut is filled with mortar-jointed masonry and the chambers show up as real cavities. Instanced meshes, PBR lit from the sky model, render-on-demand with cached shadows.</p></div>
+            <div class="stage"><div class="k">LAYER 2 · SIMULATION</div><h4>Science you can check</h4><p>13,200 rays traced through the real geometry with Poisson noise reproduce the ScanPyramids Big Void above 5σ. IAU 1976 precession plus proper motion puts Alnitak on the King's Chamber south shaft around 2476 BCE.</p></div>
+            <div class="stage"><div class="k">LAYER 3 · AI AGENT</div><h4>An AI that drives the scene</h4><p>A Claude tool-use loop with 7 scene tools: it flies the camera, cuts the pyramid open, runs the muon lab and the night sky, then explains. Every call is shown in an agent trace and graded by a 20-case eval suite.</p></div>
+          </div>
+          <ul class="features">
+            <li><b>Layer-by-layer teardown</b>A scripted sequence lifts the capstone, peels the Tura casing course by course from the top, then separates the core to reveal the chambers.</li>
+            <li><b>Construction timeline</b>Twenty years paced by stone volume, with four ramp hypotheses (straight, zigzag, spiral, Houdin's internal ramp) and live length, material and crew estimates.</li>
+            <li><b>First-person walk</b>True-scale passages lit by a flickering torch; you crouch automatically in the 1.2 m ascending passage, and footsteps echo to the size of each room.</li>
+            <li><b>AI code studio</b><span>Describe a change in plain words and Claude writes JavaScript against the page's own <code>giza</code> API. Runs in a sandbox; on error the AI reads the stack and fixes it.</span></li>
+            <li><b>Agent evaluation</b>20 test cases check tool choice, arguments and order, forbidden calls, required facts, language and length, with pass rate per category and JSON export.</li>
+            <li><b>Public AI, safely</b>A Cloudflare Worker keeps the API key server-side, allows only this origin, rate-limits per IP and picks the model, so the AI works on the public GitHub Pages site.</li>
+          </ul>
+          <div class="results">
+            <div class="result"><b data-count="22994">22,994</b><span>instanced stones</span></div>
+            <div class="result"><b data-count="7">7</b><span>tools for the AI agent</span></div>
+            <div class="result"><b data-count="20">20</b><span>agent eval cases</span></div>
+            <div class="result"><b data-count="13200">13,200</b><span>muon rays per scan</span></div>
+          </div>
+          <ul class="stack"><li>three.js</li><li>WebGL / GLSL</li><li>Stencil buffer</li><li>InstancedMesh</li><li>Claude API</li><li>Tool use</li><li>Agent evals</li><li>Cloudflare Workers</li><li>Web Audio</li><li>GitHub Pages</li></ul>
+          <div class="p-links"><a class="btn primary" href="https://vuthevinh2125.github.io/giza-pyramid-3d/" target="_blank" rel="noopener">Open live demo →</a><a class="btn" href="https://github.com/vuthevinh2125/giza-pyramid-3d" target="_blank" rel="noopener">Source on GitHub</a></div>
         </div>
       </article>
 

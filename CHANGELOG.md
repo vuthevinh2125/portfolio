@@ -2,6 +2,10 @@
 
 A log of each round of changes to this portfolio, newest first. Each entry says what changed, why, and how it was checked.
 
+## 2026-11-10 · NetSentinel blind test
+
+- NetSentinel card: added the blind test on IoT-23 (detectors frozen, run once: 16/20 infected IoT devices caught); the result tile now shows 16/20.
+
 ## 2026-11-10 · NetSentinel on real traffic
 
 - NetSentinel card: one feature now reports the evaluation on 28 real, labelled malware captures (14/18 infected host-days caught, 2.2 false alerts a day, the IPv6 bug real data exposed), and one result tile shows 14/18. Added Zeek to the stack.

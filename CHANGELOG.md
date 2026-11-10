@@ -2,6 +2,10 @@
 
 A log of each round of changes to this portfolio, newest first. Each entry says what changed, why, and how it was checked.
 
+## 2026-11-10 · NetSentinel on real traffic
+
+- NetSentinel card: one feature now reports the evaluation on 28 real, labelled malware captures (14/18 infected host-days caught, 2.2 false alerts a day, the IPv6 bug real data exposed), and one result tile shows 14/18. Added Zeek to the stack.
+
 ## 2026-11-10 · NetSentinel project
 
 - New project card for **NetSentinel**, an AI-assisted mini SOC: screenshot of the SOC console, three layers (lab network, detection, AI analyst), six features, results (7/7 attacks, 0.4 false alerts/day, 10/10 AI verdicts, 16 tests), stack, and links to the live demo and source.

@@ -2,6 +2,12 @@
 
 A log of each round of changes to this portfolio, newest first. Each entry says what changed, why, and how it was checked.
 
+## 2026-11-10 · Experience & education first
+
+- Moved "Experience & education" (VTV, University of Greenwich) to right after the hero, before About and Projects, so recruiters see it first.
+- Renumbered the section hops (experience 01, about 02, projects 03), reordered the nav, the auto demo tour and the build animation to match.
+- Checked on desktop and phone width: no sideways scroll, no console errors.
+
 ## 2026-11-10 · NetSentinel blind test
 
 - NetSentinel card: added the blind test on IoT-23 (detectors frozen, run once: 16/20 infected IoT devices caught); the result tile now shows 16/20.

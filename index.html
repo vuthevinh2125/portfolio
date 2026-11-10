@@ -253,6 +253,12 @@ body.demo, body.demo *{cursor:none}
 .demo-btn .dot{width:7px;height:7px;background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
 body.demo .demo-btn .dot{clip-path:none}
 .nav-right{display:flex;align-items:center;gap:24px}
+.lang{display:inline-flex;border:1px solid var(--line)}
+.lang button{font-family:var(--mono);font-size:12px;letter-spacing:.08em;padding:7px 10px;background:transparent;color:var(--muted);border:0;cursor:pointer;transition:background .2s,color .2s}
+.lang button+button{border-left:1px solid var(--line)}
+.lang button:hover{color:var(--fg)}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+@media (max-width:420px){.nav-right{gap:10px}.demo-btn{padding:8px 10px}.demo-btn #demo-label{display:none}}
 #demo-hint{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:30;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);background:var(--panel);border:1px solid var(--line);padding:8px 14px;opacity:0;transition:opacity .4s;pointer-events:none;white-space:nowrap;max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis}
 body.demo #demo-hint{opacity:1}
 /* hover states the demo cursor can trigger */
@@ -319,12 +325,13 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
     <a class="brand" href="#top">VTV<span>.</span>INH</a>
     <div class="nav-right">
       <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#about" data-vi="Giới thiệu">About</a></li>
+        <li><a href="#projects" data-vi="Dự án">Projects</a></li>
+        <li><a href="#experience" data-vi="Kinh nghiệm">Experience</a></li>
+        <li><a href="#skills" data-vi="Kỹ năng">Skills</a></li>
+        <li><a href="#contact" data-vi="Liên hệ">Contact</a></li>
       </ul>
+      <div class="lang" role="group" aria-label="Language / Ngôn ngữ"><button type="button" data-lang="vi" aria-pressed="false">VIE</button><button type="button" data-lang="en" aria-pressed="true">ENG</button></div>
       <button class="demo-btn" id="demo-btn" type="button"><span class="dot"></span><span id="demo-label">Auto demo</span></button>
     </div>
   </div>
@@ -336,13 +343,13 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
 <header class="hero" id="top">
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div class="label rise"><b>●</b> Online · Hanoi, Vietnam · Open to AI &amp; data roles</div>
+    <div class="label rise" data-vi="&lt;b&gt;●&lt;/b&gt; Online · Hà Nội, Việt Nam · Sẵn sàng cho vị trí AI &amp;amp; dữ liệu"><b>●</b> Online · Hanoi, Vietnam · Open to AI &amp; data roles</div>
     <div class="hero-stage">
       <div class="hero-word" aria-hidden="true">Portfolio</div>
       <div class="hero-left">
-        <p class="hello">Hello, I'm</p>
+        <p class="hello" data-vi="Xin chào, tôi là">Hello, I'm</p>
         <h1 class="rise d1"><span class="o">Vu The</span><span class="r">Vinh.</span></h1>
-        <p class="roles">AI &amp; Data Builder<br>Network Administrator</p>
+        <p class="roles" data-vi="Xây dựng AI &amp;amp; dữ liệu&lt;br&gt;Quản trị mạng">AI &amp; Data Builder<br>Network Administrator</p>
       </div>
       <figure class="hero-photo rise d2">
         <img src="images/vinh-cutout.webp" alt="Vu The Vinh in a VTV polo shirt" width="950" height="792">
@@ -350,14 +357,14 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
       <ul class="hero-side">
         <li><b>3.62</b><span>GPA · Greenwich</span></li>
         <li><b>Top 20</b><span>FPT Edu Hackathon</span></li>
-        <li><b>VTV</b><span>Network Admin</span></li>
+        <li><b>VTV</b><span data-vi="Quản trị mạng">Network Admin</span></li>
       </ul>
     </div>
     <div class="hero-row rise d2">
-      <p>Computer Science student at the University of Greenwich and network administrator at Vietnam Television. I keep enterprise networks running by day and build <em>AI systems, data pipelines and games</em> that turn raw, messy data into something people can use and play.</p>
+      <p data-vi="Sinh viên Khoa học Máy tính tại Đại học Greenwich và quản trị mạng tại Đài Truyền hình Việt Nam. Ban ngày tôi giữ cho hệ thống mạng doanh nghiệp vận hành ổn định, ngoài giờ tôi xây dựng &lt;em&gt;hệ thống AI, pipeline dữ liệu và game&lt;/em&gt;, biến dữ liệu thô, lộn xộn thành sản phẩm người dùng thật sự dùng và chơi được.">Computer Science student at the University of Greenwich and network administrator at Vietnam Television. I keep enterprise networks running by day and build <em>AI systems, data pipelines and games</em> that turn raw, messy data into something people can use and play.</p>
       <div class="cta">
-        <a class="btn primary" href="#projects">See projects →</a>
-        <a class="btn" href="#contact">Get in touch</a>
+        <a class="btn primary" href="#projects" data-vi="Xem dự án →">See projects →</a>
+        <a class="btn" href="#contact" data-vi="Liên hệ">Get in touch</a>
       </div>
     </div>
   </div>
@@ -374,19 +381,19 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
   <section id="about">
     <div class="wrap">
       <div class="sec-head">
-        <div class="label"><b>hop 01</b> / about</div>
-        <h2>From packets <span>to models.</span></h2>
+        <div class="label" data-vi="&lt;b&gt;hop 01&lt;/b&gt; / giới thiệu"><b>hop 01</b> / about</div>
+        <h2 data-vi="Từ gói tin &lt;span&gt;đến mô hình.&lt;/span&gt;">From packets <span>to models.</span></h2>
       </div>
       <div class="about">
         <div></div>
-        <p>I work across two layers most people keep separate. At VTV's Technology and Transmission Center I help monitor and troubleshoot the network that carries national broadcast data, where uptime is not optional.</p>
-        <p>In my projects I use that same discipline on data: scraping, cleaning, embedding, clustering and evaluating, with clear metrics at every step. I lead teams, speak in public, and like problems that need both infrastructure and intelligence.</p>
+        <p data-vi="Tôi làm việc ở hai tầng mà ít người kết hợp. Tại Trung tâm Kỹ thuật Truyền dẫn của VTV, tôi tham gia giám sát và xử lý sự cố cho hệ thống mạng truyền tải dữ liệu phát sóng quốc gia, nơi mạng không được phép gián đoạn.">I work across two layers most people keep separate. At VTV's Technology and Transmission Center I help monitor and troubleshoot the network that carries national broadcast data, where uptime is not optional.</p>
+        <p data-vi="Trong các dự án, tôi áp dụng đúng kỷ luật đó cho dữ liệu: thu thập, làm sạch, embedding, phân cụm và đánh giá, mỗi bước đều có số đo rõ ràng. Tôi dẫn dắt nhóm, nói trước đám đông và thích những bài toán cần cả hạ tầng lẫn trí tuệ nhân tạo.">In my projects I use that same discipline on data: scraping, cleaning, embedding, clustering and evaluating, with clear metrics at every step. I lead teams, speak in public, and like problems that need both infrastructure and intelligence.</p>
       </div>
       <div class="facts">
-        <div class="fact"><div class="n">3.62<small>/4</small></div><div class="t">GPA, BSc Computer Science, final year</div></div>
-        <div class="fact"><div class="n">Top <i>20</i></div><div class="t">FPT Edu Hackathon, nationwide</div></div>
-        <div class="fact"><div class="n"><i>1,000+</i></div><div class="t">News articles processed per day</div></div>
-        <div class="fact"><div class="n">18K<i>+</i></div><div class="t">Lines of C# in a shipped Unity game</div></div>
+        <div class="fact"><div class="n">3.62<small>/4</small></div><div class="t" data-vi="GPA, Cử nhân Khoa học Máy tính, năm cuối">GPA, BSc Computer Science, final year</div></div>
+        <div class="fact"><div class="n">Top <i>20</i></div><div class="t" data-vi="FPT Edu Hackathon, toàn quốc">FPT Edu Hackathon, nationwide</div></div>
+        <div class="fact"><div class="n"><i>1,000+</i></div><div class="t" data-vi="Bài báo được xử lý mỗi ngày">News articles processed per day</div></div>
+        <div class="fact"><div class="n">18K<i>+</i></div><div class="t" data-vi="Dòng code C# trong một game Unity hoàn chỉnh">Lines of C# in a shipped Unity game</div></div>
       </div>
     </div>
   </section>
@@ -396,38 +403,38 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
   <section id="projects">
     <div class="wrap">
       <div class="sec-head">
-        <div class="label"><b>hop 02</b> / selected work</div>
-        <h2>Raw data. <span>Real results.</span></h2>
+        <div class="label" data-vi="&lt;b&gt;hop 02&lt;/b&gt; / dự án tiêu biểu"><b>hop 02</b> / selected work</div>
+        <h2 data-vi="Dữ liệu thô. &lt;span&gt;Kết quả thật.&lt;/span&gt;">Raw data. <span>Real results.</span></h2>
       </div>
 
       <article class="project">
         <div class="p-meta">
           <div class="date">07 – 11 / 2026</div>
-          <span class="badge">Final year project</span>
+          <span class="badge" data-vi="Đồ án tốt nghiệp">Final year project</span>
           <div class="label">Unity 6 · C# · 219 commits</div>
         </div>
         <div class="p-body">
           <h3>VietUrban Supermarket Simulator</h3>
-          <p class="role">A first-person management game where you run a convenience store on a busy Vietnamese street. Stock shelves, set prices and serve the checkout, then ride a motorbike to deliver orders across a 12-block district while the weather, the traffic and nine kinds of AI agents shape your day.</p>
+          <p class="role" data-vi="Game quản lý góc nhìn thứ nhất: bạn điều hành một cửa hàng tiện lợi trên con phố đông đúc kiểu Việt Nam. Xếp hàng lên kệ, đặt giá, đứng quầy thu ngân, rồi chạy xe máy giao hàng khắp khu phố 12 block, trong khi thời tiết, giao thông và chín loại tác tử AI quyết định một ngày của bạn.">A first-person management game where you run a convenience store on a busy Vietnamese street. Stock shelves, set prices and serve the checkout, then ride a motorbike to deliver orders across a 12-block district while the weather, the traffic and nine kinds of AI agents shape your day.</p>
           <div class="pipeline">
-            <div class="stage"><div class="k">LAYER 1 · GAME AI</div><h4>Nine kinds of agent</h4><p>Customers run a state machine: browse, judge prices, queue, pay or steal, then rate the store 1–5 stars. Shelf stockers pick the most urgent shelf by utility score; guards chase thieves; cleaners find the nearest mess.</p></div>
-            <div class="stage"><div class="k">LAYER 2 · CITY</div><h4>A living Vietnamese street</h4><p>14 traffic vehicles on a road graph, ambulances and traffic police with Vietnamese plates, up to 22 pedestrians, 73 delivery addresses, 5 weather types across 4 seasons.</p></div>
-            <div class="stage"><div class="k">LAYER 3 · ECONOMY</div><h4>Demand that reacts</h4><p>10 product groups with demand from 0.4 to 2.5 by hour, weather, temperature, season and weekday. Fresh food expires, ratings move footfall ±30%, and stats track revenue by day, week and month.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 1 · AI TRONG GAME">LAYER 1 · GAME AI</div><h4 data-vi="Chín loại tác tử">Nine kinds of agent</h4><p data-vi="Khách hàng chạy theo máy trạng thái: dạo xem, cân nhắc giá, xếp hàng, trả tiền hoặc ăn trộm, rồi chấm cửa hàng 1–5 sao. Nhân viên xếp kệ chọn kệ gấp nhất theo điểm tiện ích; bảo vệ đuổi trộm; lao công tìm vết bẩn gần nhất.">Customers run a state machine: browse, judge prices, queue, pay or steal, then rate the store 1–5 stars. Shelf stockers pick the most urgent shelf by utility score; guards chase thieves; cleaners find the nearest mess.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 2 · THÀNH PHỐ">LAYER 2 · CITY</div><h4 data-vi="Một con phố Việt Nam sống động">A living Vietnamese street</h4><p data-vi="14 xe chạy theo mạng đường, xe cứu thương và xe cảnh sát giao thông mang biển số Việt Nam, tối đa 22 người đi bộ, 73 địa chỉ giao hàng, 5 kiểu thời tiết qua 4 mùa.">14 traffic vehicles on a road graph, ambulances and traffic police with Vietnamese plates, up to 22 pedestrians, 73 delivery addresses, 5 weather types across 4 seasons.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 3 · KINH TẾ">LAYER 3 · ECONOMY</div><h4 data-vi="Nhu cầu biết phản ứng">Demand that reacts</h4><p data-vi="10 nhóm hàng với hệ số nhu cầu 0.4–2.5 theo giờ, thời tiết, nhiệt độ, mùa và thứ trong tuần. Hàng tươi có hạn dùng, điểm đánh giá làm lượng khách thay đổi ±30%, bảng thống kê theo dõi doanh thu theo ngày, tuần, tháng.">10 product groups with demand from 0.4 to 2.5 by hour, weather, temperature, season and weekday. Fresh food expires, ratings move footfall ±30%, and stats track revenue by day, week and month.</p></div>
           </div>
           <ul class="features">
-            <li><b>Story opening</b>A one-minute cutscene about Grandma Lan's old grocery, with film-grade flashback and a letter the player answers.</li>
-            <li><b>Random events</b>A three-person theft gang with alarm and slow-motion chase, hygiene inspectors and tour groups of 8 customers.</li>
-            <li><b>Store that grows</b>Start in one small room and unlock four more sections, a warehouse and two extensions from Lv2 to Lv5.</li>
-            <li><b>Vehicles</b>Buy a C125 scooter, a Classic Sedan or a Sports Coupe, with third- and first-person driving cameras.</li>
-            <li><b>Balanced for new players</b>Playtest logs showed day one at −$165. After retuning prices, rent, wages and the XP curve, a typical day ends around +$71.</li>
-            <li><b>Tested &amp; measured</b>38 automated tests across 184,800 demand combinations, plus a custom FpsLogger that writes FPS, 1% lows and GC to CSV.</li>
+            <li data-vi="&lt;b&gt;Cảnh mở đầu có cốt truyện&lt;/b&gt;Đoạn phim một phút về tiệm tạp hoá cũ của bà Lan, hồi tưởng màu phim cũ và một lá thư người chơi tự chọn câu trả lời."><b>Story opening</b>A one-minute cutscene about Grandma Lan's old grocery, with film-grade flashback and a letter the player answers.</li>
+            <li data-vi="&lt;b&gt;Sự kiện ngẫu nhiên&lt;/b&gt;Băng trộm ba người kèm còi báo động và cảnh rượt đuổi chậm hình, thanh tra vệ sinh, đoàn khách du lịch 8 người."><b>Random events</b>A three-person theft gang with alarm and slow-motion chase, hygiene inspectors and tour groups of 8 customers.</li>
+            <li data-vi="&lt;b&gt;Cửa hàng lớn dần&lt;/b&gt;Bắt đầu từ một gian nhỏ, mở thêm bốn gian, một kho và hai phần mở rộng từ Lv2 đến Lv5."><b>Store that grows</b>Start in one small room and unlock four more sections, a warehouse and two extensions from Lv2 to Lv5.</li>
+            <li data-vi="&lt;b&gt;Phương tiện&lt;/b&gt;Mua xe C125, Classic Sedan hoặc Sports Coupe, lái bằng camera góc thứ ba hoặc góc thứ nhất."><b>Vehicles</b>Buy a C125 scooter, a Classic Sedan or a Sports Coupe, with third- and first-person driving cameras.</li>
+            <li data-vi="&lt;b&gt;Cân bằng cho người mới&lt;/b&gt;Log chơi thử cho thấy ngày đầu lỗ −$165. Sau khi chỉnh lại giá bán, tiền thuê, lương và đường cong XP, một ngày điển hình lãi khoảng +$71."><b>Balanced for new players</b>Playtest logs showed day one at −$165. After retuning prices, rent, wages and the XP curve, a typical day ends around +$71.</li>
+            <li data-vi="&lt;b&gt;Kiểm thử &amp;amp; đo đạc&lt;/b&gt;38 test tự động trên 184.800 tổ hợp nhu cầu, cùng công cụ FpsLogger tự viết ghi FPS, 1% low và rác bộ nhớ ra file CSV."><b>Tested &amp; measured</b>38 automated tests across 184,800 demand combinations, plus a custom FpsLogger that writes FPS, 1% lows and GC to CSV.</li>
           </ul>
           <div class="results">
-            <div class="result"><b data-count="61" data-prefix="+" data-suffix="%">+61%</b><span>average FPS (71 → 114)</span></div>
-            <div class="result"><b data-count="18" data-prefix="×">×18</b><span>1% low in storms (4.3 → 77.9)</span></div>
-            <div class="result"><b data-count="38" data-suffix="/38">38/38</b><span>automated tests pass</span></div>
-            <div class="result"><b data-count="23">23</b><span>bugs fixed at root cause</span></div>
-            <div class="result"><b data-count="18000" data-suffix="+">18,000+</b><span>lines of C#</span></div>
+            <div class="result"><b data-count="61" data-prefix="+" data-suffix="%">+61%</b><span data-vi="FPS trung bình (71 → 114)">average FPS (71 → 114)</span></div>
+            <div class="result"><b data-count="18" data-prefix="×">×18</b><span data-vi="1% low khi giông (4.3 → 77.9)">1% low in storms (4.3 → 77.9)</span></div>
+            <div class="result"><b data-count="38" data-suffix="/38">38/38</b><span data-vi="test tự động đạt">automated tests pass</span></div>
+            <div class="result"><b data-count="23">23</b><span data-vi="lỗi được sửa tận gốc">bugs fixed at root cause</span></div>
+            <div class="result"><b data-count="18000" data-suffix="+">18,000+</b><span data-vi="dòng code C#">lines of C#</span></div>
           </div>
           <ul class="stack"><li>Unity 6</li><li>C#</li><li>URP</li><li>NavMesh / A*</li><li>State machines</li><li>Utility AI</li><li>Unity Test Framework</li><li>JSON save system</li><li>21 Editor tools</li><li>Git / GitHub</li></ul>
         </div>
@@ -436,54 +443,54 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
       <article class="project">
         <div class="p-meta">
           <div class="date">11 / 2026</div>
-          <span class="badge">Solo project</span>
+          <span class="badge" data-vi="Dự án cá nhân">Solo project</span>
           <div class="label">three.js · WebGL · Claude API</div>
         </div>
         <div class="p-body">
-          <h3>Giza: The Great Pyramid in 3D</h3>
-          <p class="role">A browser model of Khufu's pyramid built from 22,994 individual stones placed to archaeological survey data. Take it apart layer by layer, watch twenty years of construction, walk the passages at true scale, rediscover the Big Void with simulated muons, and ask an AI guide that drives the scene itself.</p>
+          <h3 data-vi="Giza: Đại Kim tự tháp 3D">Giza: The Great Pyramid in 3D</h3>
+          <p class="role" data-vi="Mô hình kim tự tháp Khufu chạy trên trình duyệt, dựng từ 22.994 khối đá riêng lẻ theo số đo khảo cổ. Tháo dỡ từng lớp, xem 20 năm xây dựng, đi bộ trong hành lang với kích thước thật, tự tìm lại Khoảng trống lớn bằng mô phỏng muon, và hỏi hướng dẫn viên AI tự điều khiển cảnh.">A browser model of Khufu's pyramid built from 22,994 individual stones placed to archaeological survey data. Take it apart layer by layer, watch twenty years of construction, walk the passages at true scale, rediscover the Big Void with simulated muons, and ask an AI guide that drives the scene itself.</p>
           <div class="pipeline">
-            <div class="stage"><div class="k">LAYER 1 · RENDERING</div><h4>Solid cross-sections</h4><p>Every stone is drawn into the stencil buffer with an invert op; odd parity means "inside rock", so the cut is filled with mortar-jointed masonry and the chambers show up as real cavities. Instanced meshes, PBR lit from the sky model, render-on-demand with cached shadows.</p></div>
-            <div class="stage"><div class="k">LAYER 2 · SIMULATION</div><h4>Science you can check</h4><p>13,200 rays traced through the real geometry with Poisson noise reproduce the ScanPyramids Big Void above 5σ. IAU 1976 precession plus proper motion puts Alnitak on the King's Chamber south shaft around 2476 BCE.</p></div>
-            <div class="stage"><div class="k">LAYER 3 · AI AGENT</div><h4>An AI that drives the scene</h4><p>A Claude tool-use loop with 7 scene tools: it flies the camera, cuts the pyramid open, runs the muon lab and the night sky, then explains. Every call is shown in an agent trace and graded by a 20-case eval suite.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 1 · ĐỒ HOẠ">LAYER 1 · RENDERING</div><h4 data-vi="Mặt cắt khối đặc">Solid cross-sections</h4><p data-vi="Mọi khối đá được vẽ vào stencil buffer bằng phép đảo bit; số lẻ nghĩa là &quot;nằm trong đá&quot;, nên mặt cắt được lấp bằng tường đá có mạch vữa và các phòng hiện ra như khoang rỗng thật. Dùng instanced mesh, ánh sáng PBR lấy từ mô hình bầu trời, chỉ render khi cảnh thay đổi và dùng lại bóng đổ đã tính.">Every stone is drawn into the stencil buffer with an invert op; odd parity means "inside rock", so the cut is filled with mortar-jointed masonry and the chambers show up as real cavities. Instanced meshes, PBR lit from the sky model, render-on-demand with cached shadows.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 2 · MÔ PHỎNG">LAYER 2 · SIMULATION</div><h4 data-vi="Khoa học kiểm chứng được">Science you can check</h4><p data-vi="13.200 tia bắn qua hình học thật, có nhiễu Poisson, tái hiện Khoảng trống lớn của ScanPyramids ở mức trên 5σ. Tuế sai IAU 1976 cộng chuyển động riêng của sao cho thấy sao Alnitak nằm trên trục phía nam Phòng Vua vào khoảng năm 2476 TCN.">13,200 rays traced through the real geometry with Poisson noise reproduce the ScanPyramids Big Void above 5σ. IAU 1976 precession plus proper motion puts Alnitak on the King's Chamber south shaft around 2476 BCE.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 3 · TÁC TỬ AI">LAYER 3 · AI AGENT</div><h4 data-vi="AI tự điều khiển cảnh">An AI that drives the scene</h4><p data-vi="Vòng lặp tool use của Claude với 7 công cụ điều khiển cảnh: bay camera, cắt mở kim tự tháp, chạy phòng thí nghiệm muon và bầu trời đêm, rồi giải thích. Mọi lần gọi công cụ được hiện trong nhật ký tác tử và chấm điểm bằng bộ đánh giá 20 ca.">A Claude tool-use loop with 7 scene tools: it flies the camera, cuts the pyramid open, runs the muon lab and the night sky, then explains. Every call is shown in an agent trace and graded by a 20-case eval suite.</p></div>
           </div>
           <ul class="features">
-            <li><b>Layer-by-layer teardown</b>A scripted sequence lifts the capstone, peels the Tura casing course by course from the top, then separates the core to reveal the chambers.</li>
-            <li><b>Construction timeline</b>Twenty years paced by stone volume, with four ramp hypotheses (straight, zigzag, spiral, Houdin's internal ramp) and live length, material and crew estimates.</li>
-            <li><b>First-person walk</b>True-scale passages lit by a flickering torch; you crouch automatically in the 1.2 m ascending passage, and footsteps echo to the size of each room.</li>
-            <li><b>AI code studio</b><span>Describe a change in plain words and Claude writes JavaScript against the page's own <code>giza</code> API. Runs in a sandbox; on error the AI reads the stack and fixes it.</span></li>
-            <li><b>Agent evaluation</b>20 test cases check tool choice, arguments and order, forbidden calls, required facts, language and length, with pass rate per category and JSON export.</li>
-            <li><b>Public AI, safely</b>A Cloudflare Worker keeps the API key server-side, allows only this origin, rate-limits per IP and picks the model, so the AI works on the public GitHub Pages site.</li>
+            <li data-vi="&lt;b&gt;Tháo dỡ từng lớp&lt;/b&gt;Hoạt cảnh có kịch bản nhấc đỉnh chóp, gỡ lớp vỏ đá Tura từng hàng từ trên xuống, rồi tách phần lõi để lộ các phòng bên trong."><b>Layer-by-layer teardown</b>A scripted sequence lifts the capstone, peels the Tura casing course by course from the top, then separates the core to reveal the chambers.</li>
+            <li data-vi="&lt;b&gt;Dòng thời gian xây dựng&lt;/b&gt;20 năm xây dựng theo khối lượng đá, so sánh bốn giả thuyết đường dốc (thẳng, gấp khúc, xoắn ốc, dốc bên trong theo Houdin) kèm ước tính chiều dài, vật liệu và nhân công."><b>Construction timeline</b>Twenty years paced by stone volume, with four ramp hypotheses (straight, zigzag, spiral, Houdin's internal ramp) and live length, material and crew estimates.</li>
+            <li data-vi="&lt;b&gt;Đi bộ góc nhìn thứ nhất&lt;/b&gt;Hành lang kích thước thật dưới ánh đuốc lập loè; tự cúi người trong hành lang đi lên cao 1,2 m, tiếng bước chân vang theo độ lớn từng phòng."><b>First-person walk</b>True-scale passages lit by a flickering torch; you crouch automatically in the 1.2 m ascending passage, and footsteps echo to the size of each room.</li>
+            <li data-vi="&lt;b&gt;Xưởng lập trình AI&lt;/b&gt;&lt;span&gt;Mô tả thay đổi bằng lời thường, Claude viết JavaScript dùng API &lt;code&gt;giza&lt;/code&gt; của trang. Code chạy trong sandbox; khi lỗi, AI đọc thông báo lỗi và tự sửa.&lt;/span&gt;"><b>AI code studio</b><span>Describe a change in plain words and Claude writes JavaScript against the page's own <code>giza</code> API. Runs in a sandbox; on error the AI reads the stack and fixes it.</span></li>
+            <li data-vi="&lt;b&gt;Đánh giá tác tử&lt;/b&gt;20 ca kiểm thử chấm việc chọn công cụ, tham số và thứ tự, lời gọi bị cấm, thông tin bắt buộc, ngôn ngữ và độ dài, có tỉ lệ đạt theo nhóm và xuất ra JSON."><b>Agent evaluation</b>20 test cases check tool choice, arguments and order, forbidden calls, required facts, language and length, with pass rate per category and JSON export.</li>
+            <li data-vi="&lt;b&gt;AI công khai mà vẫn an toàn&lt;/b&gt;Cloudflare Worker giữ API key phía máy chủ, chỉ nhận yêu cầu từ đúng trang này, giới hạn lượt theo IP và tự chọn mô hình, nên AI chạy được trên trang GitHub Pages công khai."><b>Public AI, safely</b>A Cloudflare Worker keeps the API key server-side, allows only this origin, rate-limits per IP and picks the model, so the AI works on the public GitHub Pages site.</li>
           </ul>
           <div class="results">
-            <div class="result"><b data-count="22994">22,994</b><span>instanced stones</span></div>
-            <div class="result"><b data-count="7">7</b><span>tools for the AI agent</span></div>
-            <div class="result"><b data-count="20">20</b><span>agent eval cases</span></div>
-            <div class="result"><b data-count="13200">13,200</b><span>muon rays per scan</span></div>
+            <div class="result"><b data-count="22994">22,994</b><span data-vi="khối đá instanced">instanced stones</span></div>
+            <div class="result"><b data-count="7">7</b><span data-vi="công cụ cho tác tử AI">tools for the AI agent</span></div>
+            <div class="result"><b data-count="20">20</b><span data-vi="ca đánh giá tác tử">agent eval cases</span></div>
+            <div class="result"><b data-count="13200">13,200</b><span data-vi="tia muon mỗi lần quét">muon rays per scan</span></div>
           </div>
           <ul class="stack"><li>three.js</li><li>WebGL / GLSL</li><li>Stencil buffer</li><li>InstancedMesh</li><li>Claude API</li><li>Tool use</li><li>Agent evals</li><li>Cloudflare Workers</li><li>PBR + bloom</li><li>Monte Carlo sim</li><li>Real-time presence</li><li>Web Audio</li><li>GitHub Pages</li></ul>
-          <div class="p-links"><a class="btn primary" href="https://vuthevinh2125.github.io/giza-pyramid-3d/" target="_blank" rel="noopener">Open live demo →</a><a class="btn" href="https://github.com/vuthevinh2125/giza-pyramid-3d" target="_blank" rel="noopener">Source on GitHub</a></div>
+          <div class="p-links"><a class="btn primary" href="https://vuthevinh2125.github.io/giza-pyramid-3d/" target="_blank" rel="noopener" data-vi="Mở bản demo →">Open live demo →</a><a class="btn" href="https://github.com/vuthevinh2125/giza-pyramid-3d" target="_blank" rel="noopener" data-vi="Mã nguồn trên GitHub">Source on GitHub</a></div>
         </div>
       </article>
 
       <article class="project">
         <div class="p-meta">
           <div class="date">06 / 2024</div>
-          <span class="badge">Top 20 nationwide</span>
+          <span class="badge" data-vi="Top 20 toàn quốc">Top 20 nationwide</span>
           <div class="label">FPT Edu Hackathon</div>
         </div>
         <div class="p-body">
-          <h3>Automated Daily News Aggregator</h3>
-          <p class="role">Candidate &amp; team representative. An AI pipeline that collects 1,000+ breaking news articles a day from VnExpress, Tuổi Trẻ and Thanh Niên, groups duplicates and writes short summaries.</p>
+          <h3 data-vi="Hệ thống tổng hợp tin tức tự động">Automated Daily News Aggregator</h3>
+          <p class="role" data-vi="Thí sinh &amp;amp; đại diện nhóm. Pipeline AI thu thập hơn 1.000 tin nóng mỗi ngày từ VnExpress, Tuổi Trẻ và Thanh Niên, gom các tin trùng lặp và viết tóm tắt ngắn.">Candidate &amp; team representative. An AI pipeline that collects 1,000+ breaking news articles a day from VnExpress, Tuổi Trẻ and Thanh Niên, groups duplicates and writes short summaries.</p>
           <div class="pipeline">
-            <div class="stage"><div class="k">STEP 1 · ETL</div><h4>Scrape &amp; structure</h4><p>Python scrapers (BeautifulSoup, Selenium) pull RSS and web sources, clean unstructured text and load it into PostgreSQL.</p></div>
-            <div class="stage"><div class="k">STEP 2 · VECTORS</div><h4>Embed &amp; deduplicate</h4><p>PhoBERT embeddings with cosine-similarity search in pgvector group related stories automatically.</p></div>
-            <div class="stage"><div class="k">STEP 3 · LLM</div><h4>Classify &amp; summarize</h4><p>GPT-3.5-turbo with custom prompts handles zero-shot topic classification and concise summaries.</p></div>
+            <div class="stage"><div class="k" data-vi="BƯỚC 1 · ETL">STEP 1 · ETL</div><h4 data-vi="Thu thập &amp;amp; chuẩn hoá">Scrape &amp; structure</h4><p data-vi="Bộ thu thập Python (BeautifulSoup, Selenium) lấy tin từ RSS và trang web, làm sạch văn bản phi cấu trúc rồi nạp vào PostgreSQL.">Python scrapers (BeautifulSoup, Selenium) pull RSS and web sources, clean unstructured text and load it into PostgreSQL.</p></div>
+            <div class="stage"><div class="k" data-vi="BƯỚC 2 · VECTOR">STEP 2 · VECTORS</div><h4 data-vi="Embedding &amp;amp; lọc trùng">Embed &amp; deduplicate</h4><p data-vi="Embedding PhoBERT kết hợp tìm kiếm độ tương đồng cosine trong pgvector tự động gom các tin liên quan.">PhoBERT embeddings with cosine-similarity search in pgvector group related stories automatically.</p></div>
+            <div class="stage"><div class="k" data-vi="BƯỚC 3 · LLM">STEP 3 · LLM</div><h4 data-vi="Phân loại &amp;amp; tóm tắt">Classify &amp; summarize</h4><p data-vi="GPT-3.5-turbo với prompt tự thiết kế phân loại chủ đề zero-shot và viết tóm tắt ngắn gọn.">GPT-3.5-turbo with custom prompts handles zero-shot topic classification and concise summaries.</p></div>
           </div>
           <div class="results">
-            <div class="result"><b data-count="85" data-prefix="−" data-suffix="%">−85%</b><span>duplicate entries</span></div>
-            <div class="result"><b data-count="92" data-suffix="%">92%</b><span>topic accuracy</span></div>
-            <div class="result"><b data-count="80" data-prefix="−" data-suffix="%">−80%</b><span>manual curation time</span></div>
+            <div class="result"><b data-count="85" data-prefix="−" data-suffix="%">−85%</b><span data-vi="tin trùng lặp">duplicate entries</span></div>
+            <div class="result"><b data-count="92" data-suffix="%">92%</b><span data-vi="độ chính xác chủ đề">topic accuracy</span></div>
+            <div class="result"><b data-count="80" data-prefix="−" data-suffix="%">−80%</b><span data-vi="thời gian biên tập thủ công">manual curation time</span></div>
           </div>
           <ul class="stack"><li>Python</li><li>PhoBERT</li><li>OpenAI API</li><li>PostgreSQL + pgvector</li><li>Scikit-learn</li><li>BeautifulSoup</li><li>Selenium</li><li>Git</li></ul>
         </div>
@@ -495,27 +502,27 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
     <div class="wrap">
       <div class="sec-head">
         <div class="label"><b>hop 03</b> / traceroute</div>
-        <h2>Experience <span>&amp; education.</span></h2>
+        <h2 data-vi="Kinh nghiệm &lt;span&gt;&amp;amp; học vấn.&lt;/span&gt;">Experience <span>&amp; education.</span></h2>
       </div>
       <div class="trace">
         <div class="label mono">$ traceroute vinh</div>
         <ol class="hops">
           <li class="hop live">
-            <div class="ms">06/2025 — present</div>
-            <h3>Network Administration</h3>
-            <p class="org">Vietnam Television (VTV) · Technology and Transmission Center</p>
+            <div class="ms" data-vi="06/2025 — nay">06/2025 — present</div>
+            <h3 data-vi="Quản trị mạng">Network Administration</h3>
+            <p class="org" data-vi="Đài Truyền hình Việt Nam (VTV) · Trung tâm Kỹ thuật Truyền dẫn">Vietnam Television (VTV) · Technology and Transmission Center</p>
             <ul>
-              <li>Help manage, operate and monitor enterprise IT network infrastructure and core systems.</li>
-              <li>Troubleshoot system incidents to keep data transmission stable, available and secure.</li>
-              <li>Work with senior engineers to improve internal network operating procedures.</li>
+              <li data-vi="Tham gia quản lý, vận hành và giám sát hạ tầng mạng CNTT doanh nghiệp và các hệ thống lõi.">Help manage, operate and monitor enterprise IT network infrastructure and core systems.</li>
+              <li data-vi="Xử lý sự cố hệ thống để việc truyền dữ liệu luôn ổn định, sẵn sàng và an toàn.">Troubleshoot system incidents to keep data transmission stable, available and secure.</li>
+              <li data-vi="Phối hợp với kỹ sư cấp cao cải tiến quy trình vận hành mạng nội bộ.">Work with senior engineers to improve internal network operating procedures.</li>
             </ul>
           </li>
           <li class="hop">
-            <div class="ms">2022 — 2026 · final year</div>
-            <h3>BSc Computer Science</h3>
-            <p class="org">University of Greenwich · GPA 3.62 / 4.0</p>
+            <div class="ms" data-vi="2022 — 2026 · năm cuối">2022 — 2026 · final year</div>
+            <h3 data-vi="Cử nhân Khoa học Máy tính">BSc Computer Science</h3>
+            <p class="org" data-vi="Đại học Greenwich · GPA 3.62 / 4.0">University of Greenwich · GPA 3.62 / 4.0</p>
             <ul>
-              <li>Focus on software engineering, algorithms, database management and system architecture.</li>
+              <li data-vi="Tập trung vào kỹ thuật phần mềm, thuật toán, quản trị cơ sở dữ liệu và kiến trúc hệ thống.">Focus on software engineering, algorithms, database management and system architecture.</li>
             </ul>
           </li>
         </ol>
@@ -526,16 +533,16 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
   <section id="skills">
     <div class="wrap">
       <div class="sec-head">
-        <div class="label"><b>hop 04</b> / stack</div>
-        <h2>Tools <span>I use.</span></h2>
+        <div class="label" data-vi="&lt;b&gt;hop 04&lt;/b&gt; / công nghệ"><b>hop 04</b> / stack</div>
+        <h2 data-vi="Công cụ &lt;span&gt;tôi dùng.&lt;/span&gt;">Tools <span>I use.</span></h2>
       </div>
       <div class="skills">
-        <div class="skill"><h3>Languages</h3><p>JavaScript, Python, C#, Java, SQL, GLSL, PHP, C</p></div>
-        <div class="skill"><h3>AI engineering</h3><p>Claude API, tool-use agent loops, agent evaluation suites, AI code generation in a sandbox with self-repair, LLM classification and summarization, PhoBERT embeddings, vector search</p></div>
-        <div class="skill"><h3>3D, graphics &amp; games</h3><p>three.js, WebGL and GLSL shaders, stencil-buffer cross-sections, instancing, PBR and post-processing (bloom, ACES), Unity 6 with URP, game AI (state machines, utility AI, NavMesh), Web Audio</p></div>
-        <div class="skill"><h3>Data &amp; cloud</h3><p>PostgreSQL with pgvector, Microsoft SQL Server, Azure SQL, Power BI, Pandas, scikit-learn, scientific simulation (Monte Carlo, Poisson noise)</p></div>
-        <div class="skill"><h3>Infrastructure &amp; DevOps</h3><p>Network administration, routing &amp; switching (CCNA), Cloudflare Workers (API proxy, CORS, rate limiting), GitHub Pages, Git / GitHub, automated testing, performance profiling</p></div>
-        <div class="skill"><h3>Working with people</h3><p>Project management, public speaking, cross-functional collaboration, adaptability</p></div>
+        <div class="skill"><h3 data-vi="Ngôn ngữ">Languages</h3><p>JavaScript, Python, C#, Java, SQL, GLSL, PHP, C</p></div>
+        <div class="skill"><h3 data-vi="Kỹ thuật AI">AI engineering</h3><p data-vi="Claude API, vòng lặp tác tử dùng công cụ, bộ đánh giá tác tử, AI sinh code chạy trong sandbox và tự sửa lỗi, phân loại và tóm tắt bằng LLM, embedding PhoBERT, tìm kiếm vector">Claude API, tool-use agent loops, agent evaluation suites, AI code generation in a sandbox with self-repair, LLM classification and summarization, PhoBERT embeddings, vector search</p></div>
+        <div class="skill"><h3 data-vi="3D, đồ hoạ &amp;amp; game">3D, graphics &amp; games</h3><p data-vi="three.js, WebGL và shader GLSL, mặt cắt bằng stencil buffer, instancing, PBR và hậu kỳ (bloom, ACES), Unity 6 với URP, AI trong game (máy trạng thái, utility AI, NavMesh), Web Audio">three.js, WebGL and GLSL shaders, stencil-buffer cross-sections, instancing, PBR and post-processing (bloom, ACES), Unity 6 with URP, game AI (state machines, utility AI, NavMesh), Web Audio</p></div>
+        <div class="skill"><h3 data-vi="Dữ liệu &amp;amp; đám mây">Data &amp; cloud</h3><p data-vi="PostgreSQL với pgvector, Microsoft SQL Server, Azure SQL, Power BI, Pandas, scikit-learn, mô phỏng khoa học (Monte Carlo, nhiễu Poisson)">PostgreSQL with pgvector, Microsoft SQL Server, Azure SQL, Power BI, Pandas, scikit-learn, scientific simulation (Monte Carlo, Poisson noise)</p></div>
+        <div class="skill"><h3 data-vi="Hạ tầng &amp;amp; DevOps">Infrastructure &amp; DevOps</h3><p data-vi="Quản trị mạng, định tuyến &amp;amp; chuyển mạch (CCNA), Cloudflare Workers (proxy API, CORS, giới hạn lượt gọi), GitHub Pages, Git / GitHub, kiểm thử tự động, đo và tối ưu hiệu năng">Network administration, routing &amp; switching (CCNA), Cloudflare Workers (API proxy, CORS, rate limiting), GitHub Pages, Git / GitHub, automated testing, performance profiling</p></div>
+        <div class="skill"><h3 data-vi="Làm việc với con người">Working with people</h3><p data-vi="Quản lý dự án, nói trước đám đông, phối hợp liên phòng ban, thích nghi nhanh">Project management, public speaking, cross-functional collaboration, adaptability</p></div>
       </div>
     </div>
   </section>
@@ -543,23 +550,23 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
   <section id="credentials">
     <div class="wrap">
       <div class="sec-head">
-        <div class="label"><b>hop 05</b> / beyond code</div>
-        <h2>Certified. <span>Out front.</span></h2>
+        <div class="label" data-vi="&lt;b&gt;hop 05&lt;/b&gt; / ngoài code"><b>hop 05</b> / beyond code</div>
+        <h2 data-vi="Có chứng chỉ. &lt;span&gt;Dám dẫn đầu.&lt;/span&gt;">Certified. <span>Out front.</span></h2>
       </div>
       <div class="creds">
         <div>
-          <h3 class="label">Certifications &amp; training</h3>
+          <h3 class="label" data-vi="Chứng chỉ &amp;amp; đào tạo">Certifications &amp; training</h3>
           <ul class="cred-list">
-            <li><strong>CCNA, Cisco Certified Network Associate</strong><span>Awarded by BKACAD · routing, switching and network infrastructure</span></li>
-            <li><strong>Data Analysis Program</strong><span>Rikkei Education &amp; BK Fintech · Python, SQL and analytics workflows</span></li>
+            <li><strong>CCNA, Cisco Certified Network Associate</strong><span data-vi="Cấp bởi BKACAD · định tuyến, chuyển mạch và hạ tầng mạng">Awarded by BKACAD · routing, switching and network infrastructure</span></li>
+            <li><strong data-vi="Chương trình Phân tích Dữ liệu">Data Analysis Program</strong><span data-vi="Rikkei Education &amp;amp; BK Fintech · Python, SQL và quy trình phân tích">Rikkei Education &amp; BK Fintech · Python, SQL and analytics workflows</span></li>
           </ul>
         </div>
         <div>
-          <h3 class="label">Leadership</h3>
+          <h3 class="label" data-vi="Hoạt động &amp;amp; lãnh đạo">Leadership</h3>
           <ul class="cred-list">
-            <li><strong>Microsoft Ambassador</strong><span>Microsoft · representing Microsoft technology and learning programs in the student and developer community</span></li>
-            <li><strong>National Ambassador, IELTS Online Test</strong><span>Intergreat Group · one of 18 ambassadors nationwide; led communication campaigns and community engagement</span></li>
-            <li><strong>Media Ambassador, Entrepreneurship at VinUniversity</strong><span>E-Lab · brand promotion, media outreach and event coordination for the startup ecosystem</span></li>
+            <li><strong>Microsoft Ambassador</strong><span data-vi="Microsoft · đại diện cho công nghệ và các chương trình học tập của Microsoft trong cộng đồng sinh viên và lập trình viên">Microsoft · representing Microsoft technology and learning programs in the student and developer community</span></li>
+            <li><strong data-vi="Đại sứ toàn quốc, IELTS Online Test">National Ambassador, IELTS Online Test</strong><span data-vi="Intergreat Group · một trong 18 đại sứ toàn quốc; dẫn dắt các chiến dịch truyền thông và kết nối cộng đồng">Intergreat Group · one of 18 ambassadors nationwide; led communication campaigns and community engagement</span></li>
+            <li><strong data-vi="Đại sứ Truyền thông, Khởi nghiệp tại VinUniversity">Media Ambassador, Entrepreneurship at VinUniversity</strong><span data-vi="E-Lab · quảng bá thương hiệu, truyền thông và điều phối sự kiện cho hệ sinh thái khởi nghiệp">E-Lab · brand promotion, media outreach and event coordination for the startup ecosystem</span></li>
           </ul>
         </div>
       </div>
@@ -570,18 +577,18 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
 
   <section id="contact" class="contact">
     <div class="wrap">
-      <div class="label" style="margin-bottom:20px"><b>hop 06</b> / destination reached</div>
-      <h2>Let's work <span>together.</span></h2>
+      <div class="label" style="margin-bottom:20px" data-vi="&lt;b&gt;hop 06&lt;/b&gt; / đã tới đích"><b>hop 06</b> / destination reached</div>
+      <h2 data-vi="Cùng làm &lt;span&gt;việc nhé.&lt;/span&gt;">Let's work <span>together.</span></h2>
       <div class="links">
         <div class="link">
           <div class="label">Email</div>
           <div class="v" id="email">vinhvu20102005@gmail.com</div>
-          <div class="row"><button class="mini" id="copy-email" type="button">Copy email</button></div>
+          <div class="row"><button class="mini" id="copy-email" type="button" data-vi="Sao chép email">Copy email</button></div>
         </div>
         <div class="link">
           <div class="label">LinkedIn</div>
           <div class="v">linkedin.com/in/vinh-vũ-533610304</div>
-          <div class="row"><a class="mini" href="https://www.linkedin.com/in/vinh-v%C5%A9-533610304/" target="_blank" rel="noopener">Open profile ↗</a></div>
+          <div class="row"><a class="mini" href="https://www.linkedin.com/in/vinh-v%C5%A9-533610304/" target="_blank" rel="noopener" data-vi="Mở hồ sơ ↗">Open profile ↗</a></div>
         </div>
       </div>
     </div>
@@ -590,19 +597,50 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
 
 <footer>
   <div class="wrap label">
-    <span>© 2026 Vu The Vinh</span>
+    <span data-vi="© 2026 Vũ Thế Vinh">© 2026 Vu The Vinh</span>
     <span>Status: <b>200 OK</b></span>
   </div>
 </footer>
 
 <script>
+/* ===== VIE / ENG ===== */
+(function(){
+  var STR={
+    en:{title:'Vu The Vinh Portfolio',auto:'Auto demo',stop:'Stop demo',copy:'Copy email',copied:'Copied',press:'Press Ctrl+C',hint:'Auto demo · move the mouse or scroll to take over',desc:'Vu The Vinh: Computer Science at the University of Greenwich, network administrator at VTV, building AI systems, data pipelines and games.'},
+    vi:{title:'Vũ Thế Vinh · Portfolio',auto:'Tự chạy demo',stop:'Dừng demo',copy:'Sao chép email',copied:'Đã sao chép',press:'Nhấn Ctrl+C',hint:'Đang tự chạy demo · di chuột hoặc cuộn để tự điều khiển',desc:'Vũ Thế Vinh: Khoa học Máy tính tại Đại học Greenwich, quản trị mạng tại VTV, xây dựng hệ thống AI, pipeline dữ liệu và game.'}
+  };
+  var cur='en';
+  window.__T=function(k){return (STR[cur]||STR.en)[k]};
+  window.__lang=function(){return cur};
+  function apply(l){
+    cur=STR[l]?l:'en';
+    document.documentElement.lang=cur;
+    document.querySelectorAll('[data-vi]').forEach(function(el){
+      if(el.dataset.en==null)el.dataset.en=el.innerHTML;
+      el.innerHTML=cur==='vi'?el.dataset.vi:el.dataset.en;
+    });
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===cur))});
+    document.title=STR[cur].title;
+    var md=document.querySelector('meta[name="description"]');if(md)md.setAttribute('content',STR[cur].desc);
+    var lbl=document.getElementById('demo-label');if(lbl)lbl.textContent=document.body.classList.contains('demo')?STR[cur].stop:STR[cur].auto;
+    var hint=document.getElementById('demo-hint');if(hint)hint.textContent=STR[cur].hint;
+    try{localStorage.setItem('vtv-lang',cur)}catch(e){}
+  }
+  window.__setLang=apply;
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();apply(b.dataset.lang)})});
+  var start='en';
+  try{var saved=localStorage.getItem('vtv-lang');if(saved)start=saved;else if(/^vi\b/i.test(navigator.language||''))start='vi'}catch(e){if(/^vi\b/i.test(navigator.language||''))start='vi'}
+  if(location.hash==='#vi')start='vi';else if(location.hash==='#en')start='en';
+  if(start!=='en')apply(start);
+})();
+
 document.getElementById('copy-email').addEventListener('click', function(){
   var btn=this, txt=document.getElementById('email').textContent;
-  function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},1600)}
+  function done(){btn.textContent=__T('copied');setTimeout(function(){btn.textContent=__T('copy')},1600)}
   try{
     navigator.clipboard.writeText(txt).then(done,function(){sel()});
   }catch(e){sel()}
-  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Press Ctrl+C'}
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent=__T('press')}
 });
 
 /* ===== motion layer ===== */
@@ -770,7 +808,7 @@ document.getElementById('copy-email').addEventListener('click', function(){
     await visit($('.links .link:nth-child(2) .mini'),id,{dwell:700});
     await visit($('#copy-email'),id,{dwell:600});
     await click(id);
-    var b=$('#copy-email');b.textContent='Copied';setTimeout(function(){b.textContent='Copy email'},1600);
+    var b=$('#copy-email');b.textContent=__T('copied');setTimeout(function(){b.textContent=__T('copy')},1600);
     await wait(1600,id);hover(null);
     await moveTo(innerWidth*.55,innerHeight*.4,900,id);
     await wait(1200,id);
@@ -871,20 +909,20 @@ document.getElementById('copy-email').addEventListener('click', function(){
   function start(){
     if(running)return;running=true;runId++;
     document.documentElement.style.scrollBehavior='auto';
-    document.body.classList.add('demo','has-mouse');lbl.textContent='Stop demo';
+    document.body.classList.add('demo','has-mouse');lbl.textContent=__T('stop');
     loop(runId);
   }
   function stop(){
     if(!running)return;running=false;runId++;hover(null);clearBuild();cur.classList.remove('down');document.querySelectorAll('.agent-cursor').forEach(function(a){a.classList.remove('down')});
     document.documentElement.style.scrollBehavior='';
-    document.body.classList.remove('demo');lbl.textContent='Auto demo';
+    document.body.classList.remove('demo');lbl.textContent=__T('auto');
     document.querySelectorAll('.p-body').forEach(function(c){c.style.transform=''});
     armIdle();
   }
   btn.addEventListener('click',function(e){e.stopPropagation();running?stop():start()});
   // the viewer takes over the moment they really move, scroll, tap or type
   var moved=0;
-  ['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(e){if(e.isTrusted&&running&&!btn.contains(e.target))stop()},{passive:true,capture:true})});
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(e){if(e.isTrusted&&running&&!btn.contains(e.target)&&!(e.target.closest&&e.target.closest('.lang')))stop()},{passive:true,capture:true})});
   addEventListener('mousemove',function(e){if(!e.isTrusted||!running)return;moved+=Math.abs(e.movementX||0)+Math.abs(e.movementY||0);if(moved>40){moved=0;stop()}},{capture:true});
   // start by itself after the viewer has been idle for a while
   var idleT;

@@ -2,6 +2,12 @@
 
 A log of each round of changes to this portfolio, newest first. Each entry says what changed, why, and how it was checked.
 
+## 2026-11-10 · NetSentinel project
+
+- New project card for **NetSentinel**, an AI-assisted mini SOC: screenshot of the SOC console, three layers (lab network, detection, AI analyst), six features, results (7/7 attacks, 0.4 false alerts/day, 10/10 AI verdicts, 16 tests), stack, and links to the live demo and source.
+- Fully bilingual through `data-vi`.
+- Checked on desktop and phone width: no sideways scroll, no console errors.
+
 ## 2026-11-10 · Share preview, favicon, changelog
 
 - **Share cover image** (`images/og-cover.jpg`, 1200×630): the red PORTFOLIO title, the portrait cutout and the name, so a link pasted into Facebook, LinkedIn or Zalo shows a proper preview card.

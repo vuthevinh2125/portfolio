@@ -527,6 +527,47 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
 
       <article class="project">
         <div class="p-meta">
+          <div class="date">11 / 2026</div>
+          <span class="badge" data-vi="Dự án cá nhân">Solo project</span>
+          <div class="label">Python · scikit-learn · Claude API</div>
+        </div>
+        <div class="p-body">
+          <h3 data-vi="NetSentinel: SOC mini có AI">NetSentinel: an AI-assisted mini SOC</h3>
+          <p class="role" data-vi="Một trung tâm giám sát an ninh thu nhỏ cho mạng doanh nghiệp. Hệ thống học hành vi bình thường của từng máy, phát hiện tấn công bằng luật, mô hình bất thường và bộ dò beaconing, gom cảnh báo thành chuỗi sự cố, rồi một AI analyst dùng công cụ chỉ-đọc để điều tra và viết báo cáo song ngữ, kể cả khi kết luận đó là báo động giả.">A small Security Operations Centre for a company network. It learns how every host normally behaves, catches attacks with rules, an anomaly model and a beaconing detector, chains alerts into incidents, and then an AI analyst investigates each one with read-only tools and writes a bilingual report, including when the right answer is "false alarm".</p>
+          <figure class="p-shot">
+            <button class="shot-open" type="button" aria-label="Open screenshot full size">
+              <span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>netsentinel · SOC console</span></span>
+              <img src="images/netsentinel-soc.webp" alt="NetSentinel SOC console with a seven-day timeline, incident queue and an AI analyst report" width="1600" height="1111" loading="lazy">
+              <span class="shot-zoom" aria-hidden="true">⤢</span>
+            </button>
+            <figcaption data-vi="Bảng điều khiển SOC: dòng thời gian 7 ngày, hàng đợi sự cố theo mức độ, báo cáo của AI analyst kèm từng bước điều tra và sơ đồ tấn công.">The SOC console: a seven-day timeline, an incident queue by severity, and the AI analyst's report with every investigation step and the attack graph.</figcaption>
+          </figure>
+          <div class="pipeline">
+            <div class="stage"><div class="k" data-vi="LỚP 1 · PHÒNG LAB">LAYER 1 · LAB NETWORK</div><h4 data-vi="Mạng mô phỏng có đáp án">A network with an answer key</h4><p data-vi="54 máy trên 3 VLAN, 7 ngày lưu lượng, đăng nhập và DNS. 7 cuộc tấn công gắn nhãn MITRE ATT&amp;CK cùng 6 hoạt động hợp lệ trông đáng ngờ được cài sẵn làm bẫy, nên mọi con số đều kiểm chứng được.">54 hosts on 3 VLANs, seven days of flows, logins and DNS. Seven MITRE ATT&amp;CK-labelled attacks plus six legitimate-but-suspicious activities planted as traps, so every number can be checked.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 2 · PHÁT HIỆN">LAYER 2 · DETECTION</div><h4 data-vi="Luật + học máy + beaconing">Rules + ML + beaconing</h4><p data-vi="Isolation Forest trên robust z-score so mỗi máy với chính nó; luật cho quét cổng, dò mật khẩu, di chuyển ngang SMB, đường hầm DNS, rò rỉ dữ liệu; bộ dò C2 dựa trên độ đều của khoảng thời gian kết nối. Cảnh báo được nối thành sự cố theo điểm pivot.">An Isolation Forest on robust z-scores compares each host with itself; rules cover scans, brute force, SMB lateral movement, DNS tunnelling and exfiltration; a C2 detector looks at how regular the connection timing is. Alerts are chained into incidents by pivot host.</p></div>
+            <div class="stage"><div class="k" data-vi="LỚP 3 · TÁC TỬ AI">LAYER 3 · AI ANALYST</div><h4 data-vi="AI điều tra như analyst">An AI that investigates</h4><p data-vi="Vòng lặp tool use của Claude với 6 công cụ chỉ-đọc (hồ sơ máy, flow, đăng nhập, DNS, tra MITRE) và báo cáo có cấu trúc. Một analyst theo playbook chạy offline làm mốc so sánh, cả hai được chấm bằng cùng 7 tiêu chí.">A Claude tool-use loop with six read-only tools (host profile, flows, logins, DNS, MITRE lookup) and a structured report. An offline playbook analyst gives a baseline, and both are graded on the same seven checks.</p></div>
+          </div>
+          <ul class="features">
+            <li data-vi="&lt;b&gt;Không phương pháp nào đủ một mình&lt;/b&gt;Chỉ luật bắt 71%, chỉ ML bắt 57%; luật bỏ sót quét chậm, ML bỏ sót dò mật khẩu. Kết hợp mới bắt đủ 7/7."><b>No single method is enough</b>Rules alone catch 71%, the model alone 57%; rules miss the slow scan, the model misses brute force. Only the combination gets 7/7.</li>
+            <li data-vi="&lt;b&gt;Biết nói &quot;không phải tấn công&quot;&lt;/b&gt;Heartbeat giám sát đều đặn và đợt cài phần mềm qua SMB của admin bị cảnh báo, và AI analyst kết luận đúng cả hai là vô hại."><b>Knows when it is not an attack</b>A monitoring heartbeat and an admin's SMB software push do raise alerts, and the AI analyst correctly closes both as benign.</li>
+            <li data-vi="&lt;b&gt;Đánh giá trung thực&lt;/b&gt;Chấm trên 5 mạng sinh độc lập, khớp theo đúng kỹ thuật tấn công chứ không chỉ theo IP, có bảng so sánh từng cấu hình."><b>Honest evaluation</b>Scored on five independently generated networks, matched by attack technique rather than just IP, with a per-configuration comparison table.</li>
+            <li data-vi="&lt;b&gt;Dashboard song ngữ&lt;/b&gt;Dòng thời gian, hàng đợi sự cố, nhật ký từng bước của tác tử, sơ đồ tấn công và bảng đánh giá, chạy tĩnh trên GitHub Pages hoặc trực tiếp qua Flask."><b>Bilingual dashboard</b>Timeline, incident queue, step-by-step agent trace, attack graph and evaluation heatmap, static on GitHub Pages or live through Flask.</li>
+            <li data-vi="&lt;b&gt;Phát hiện chuỗi tấn công&lt;/b&gt;Máy trạm bị lừa → beaconing C2 → quét chậm → dùng tài khoản admin bị đánh cắp qua SMB → rò rỉ 0,7 GB được nối thành một sự cố duy nhất, có sơ đồ từng bước."><b>Sees the whole kill chain</b>Phished workstation → C2 beaconing → slow scan → stolen admin account over SMB → 0.7 GB exfiltration, joined into one incident with a step-by-step graph.</li>
+            <li data-vi="&lt;b&gt;Chạy được cả khi không có API key&lt;/b&gt;Analyst theo playbook dùng cùng bộ công cụ nên toàn bộ pipeline chạy offline; thêm khoá API là Claude tự viết báo cáo và được chấm cùng thang điểm."><b>Works without an API key</b>The playbook analyst uses the same tools, so the whole pipeline runs offline; add a key and Claude writes the reports, graded on the same scale.</li>
+          </ul>
+          <div class="results">
+            <div class="result"><b data-count="7" data-suffix="/7">7/7</b><span data-vi="cuộc tấn công bị phát hiện">attacks detected</span></div>
+            <div class="result"><b>0.4</b><span data-vi="báo nhầm mỗi ngày">false alerts per day</span></div>
+            <div class="result"><b data-count="10" data-suffix="/10">10/10</b><span data-vi="kết luận đúng của AI analyst">correct AI verdicts</span></div>
+            <div class="result"><b data-count="16">16</b><span data-vi="test tự động, có CI">automated tests with CI</span></div>
+          </div>
+          <ul class="stack"><li>Python</li><li>pandas / NumPy</li><li>scikit-learn</li><li>Isolation Forest</li><li>Claude API</li><li>Tool use</li><li>Agent evals</li><li>MITRE ATT&amp;CK</li><li>Flask</li><li>pytest</li><li>GitHub Actions</li><li>GitHub Pages</li></ul>
+          <div class="p-links"><a class="btn primary" href="https://vuthevinh2125.github.io/netsentinel/" target="_blank" rel="noopener" data-vi="Mở bản demo →">Open live demo →</a><a class="btn" href="https://github.com/vuthevinh2125/netsentinel" target="_blank" rel="noopener" data-vi="Mã nguồn trên GitHub">Source on GitHub</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="p-meta">
           <div class="date">06 / 2024</div>
           <span class="badge" data-vi="Top 20 toàn quốc">Top 20 nationwide</span>
           <div class="label">FPT Edu Hackathon</div>

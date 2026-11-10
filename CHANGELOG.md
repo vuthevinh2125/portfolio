@@ -2,6 +2,11 @@
 
 A log of each round of changes to this portfolio, newest first. Each entry says what changed, why, and how it was checked.
 
+## 2026-11-10 · Skills from NetSentinel
+
+- New skill cards: **Security & detection** (Zeek / NetFlow / DNS intrusion detection, C2 beaconing, MITRE ATT&CK, alert correlation, false-positive triage, real malware traffic) and **Machine learning & evaluation** (Isolation Forest, robust z-scores, ground-truth evaluation, blind tests, Monte Carlo).
+- Data & cloud gains NumPy and Flask; Infrastructure & DevOps gains GitHub Actions CI and pytest. Eight cards now fill a 4 × 2 grid.
+
 ## 2026-11-10 · Experience & education first
 
 - Moved "Experience & education" (VTV, University of Greenwich) to right after the hero, before About and Projects, so recruiters see it first.

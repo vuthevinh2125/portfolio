@@ -90,6 +90,26 @@ nav ul a:hover{color:var(--fg)}
   .hero-side{justify-self:start;text-align:left;grid-template-columns:repeat(3,auto);gap:20px;padding:24px 0 0}
 }
 
+/* PROJECT SCREENSHOTS */
+.p-shot{margin:0 0 24px;display:grid;gap:10px}
+.shot-open{position:relative;display:block;width:100%;padding:0;border:1px solid var(--line);background:var(--panel);cursor:zoom-in;overflow:hidden;text-align:left;transition:border-color .3s}
+.shot-open:hover,.shot-open.is-hover{border-color:var(--red)}
+.shot-bar{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted);background:var(--bg)}
+.shot-bar i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.shot-bar i:first-child{background:var(--red)}
+.shot-bar span{margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.shot-open img{display:block;width:100%;height:auto;transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s;filter:saturate(.92)}
+.shot-open:hover img,.shot-open.is-hover img{transform:scale(1.025);filter:none}
+.shot-zoom{position:absolute;right:12px;bottom:12px;width:34px;height:34px;display:grid;place-items:center;background:var(--red);color:#fff;font-size:16px;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.shot-open:hover .shot-zoom,.shot-open:focus-visible .shot-zoom,.shot-open.is-hover .shot-zoom{opacity:1;transform:none}
+.p-shot figcaption{font-size:13px;color:var(--muted);max-width:80ch}
+.p-shot figcaption::before{content:"↳ ";color:var(--red);font-family:var(--mono)}
+#lightbox{padding:0;border:1px solid var(--line);background:var(--bg);color:var(--fg);max-width:min(1400px,calc(100vw - 32px));max-height:calc(100vh - 32px);width:auto}
+#lightbox::backdrop{background:rgba(5,4,6,.88);backdrop-filter:blur(4px)}
+#lightbox img{display:block;max-width:100%;max-height:calc(100vh - 120px);width:auto;height:auto;margin:0 auto}
+#lightbox .lb-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+#lightbox .lb-close{flex:none}
+
 /* STATUS TICKER */
 .ticker{border-bottom:1px solid var(--line);overflow:hidden;background:var(--panel)}
 .ticker-track{display:flex;gap:48px;white-space:nowrap;padding-block:14px;font-family:var(--mono);font-size:13px;color:var(--muted);animation:tick 38s linear infinite;width:max-content}
@@ -416,6 +436,14 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
         <div class="p-body">
           <h3>VietUrban Supermarket Simulator</h3>
           <p class="role" data-vi="Game quản lý góc nhìn thứ nhất: bạn điều hành một cửa hàng tiện lợi trên con phố đông đúc kiểu Việt Nam. Xếp hàng lên kệ, đặt giá, đứng quầy thu ngân, rồi chạy xe máy giao hàng khắp khu phố 12 block, trong khi thời tiết, giao thông và chín loại tác tử AI quyết định một ngày của bạn.">A first-person management game where you run a convenience store on a busy Vietnamese street. Stock shelves, set prices and serve the checkout, then ride a motorbike to deliver orders across a 12-block district while the weather, the traffic and nine kinds of AI agents shape your day.</p>
+          <figure class="p-shot">
+            <button class="shot-open" type="button" aria-label="Open screenshot full size">
+              <span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>VietUrban_Simulation.exe · day 5</span></span>
+              <img src="images/vieturban-store.webp" alt="VietUrban Supermarket Simulator in-game: a cashier at the checkout and a customer with a trolley inside a level 10 store" width="1600" height="874" loading="lazy">
+              <span class="shot-zoom" aria-hidden="true">⤢</span>
+            </button>
+            <figcaption data-vi="Cửa hàng Lv 10 vào ngày thứ 5: thu ngân đứng quầy, khách đẩy xe hàng, HUD hiển thị tiền, ngày, mùa, thời tiết, điểm đánh giá và minimap.">Store level 10 on day 5: a cashier at the checkout, a customer with a trolley, and the live HUD with cash, date, season, weather, star rating and minimap.</figcaption>
+          </figure>
           <div class="pipeline">
             <div class="stage"><div class="k" data-vi="LỚP 1 · AI TRONG GAME">LAYER 1 · GAME AI</div><h4 data-vi="Chín loại tác tử">Nine kinds of agent</h4><p data-vi="Khách hàng chạy theo máy trạng thái: dạo xem, cân nhắc giá, xếp hàng, trả tiền hoặc ăn trộm, rồi chấm cửa hàng 1–5 sao. Nhân viên xếp kệ chọn kệ gấp nhất theo điểm tiện ích; bảo vệ đuổi trộm; lao công tìm vết bẩn gần nhất.">Customers run a state machine: browse, judge prices, queue, pay or steal, then rate the store 1–5 stars. Shelf stockers pick the most urgent shelf by utility score; guards chase thieves; cleaners find the nearest mess.</p></div>
             <div class="stage"><div class="k" data-vi="LỚP 2 · THÀNH PHỐ">LAYER 2 · CITY</div><h4 data-vi="Một con phố Việt Nam sống động">A living Vietnamese street</h4><p data-vi="14 xe chạy theo mạng đường, xe cứu thương và xe cảnh sát giao thông mang biển số Việt Nam, tối đa 22 người đi bộ, 73 địa chỉ giao hàng, 5 kiểu thời tiết qua 4 mùa.">14 traffic vehicles on a road graph, ambulances and traffic police with Vietnamese plates, up to 22 pedestrians, 73 delivery addresses, 5 weather types across 4 seasons.</p></div>
@@ -449,6 +477,14 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
         <div class="p-body">
           <h3 data-vi="Giza: Đại Kim tự tháp 3D">Giza: The Great Pyramid in 3D</h3>
           <p class="role" data-vi="Mô hình kim tự tháp Khufu chạy trên trình duyệt, dựng từ 22.994 khối đá riêng lẻ theo số đo khảo cổ. Tháo dỡ từng lớp, xem 20 năm xây dựng, đi bộ trong hành lang với kích thước thật, tự tìm lại Khoảng trống lớn bằng mô phỏng muon, và hỏi hướng dẫn viên AI tự điều khiển cảnh.">A browser model of Khufu's pyramid built from 22,994 individual stones placed to archaeological survey data. Take it apart layer by layer, watch twenty years of construction, walk the passages at true scale, rediscover the Big Void with simulated muons, and ask an AI guide that drives the scene itself.</p>
+          <figure class="p-shot">
+            <button class="shot-open" type="button" aria-label="Open screenshot full size">
+              <span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>giza-pyramid-3d · explore mode</span></span>
+              <img src="images/giza-cross-section.webp" alt="Giza 3D model in a North–South cross-section with labelled chambers and the side panel of explore modes and AI guide" width="1242" height="850" loading="lazy">
+              <span class="shot-zoom" aria-hidden="true">⤢</span>
+            </button>
+            <figcaption data-vi="Mặt cắt Bắc–Nam ở chế độ Tham quan: các phòng được gắn nhãn ngay trong mặt cắt, bảng bên có các chế độ khám phá và hướng dẫn viên AI.">North–South cross-section in Explore mode: chambers labelled inside the cut, with the explore modes and the AI guide in the side panel.</figcaption>
+          </figure>
           <div class="pipeline">
             <div class="stage"><div class="k" data-vi="LỚP 1 · ĐỒ HOẠ">LAYER 1 · RENDERING</div><h4 data-vi="Mặt cắt khối đặc">Solid cross-sections</h4><p data-vi="Mọi khối đá được vẽ vào stencil buffer bằng phép đảo bit; số lẻ nghĩa là &quot;nằm trong đá&quot;, nên mặt cắt được lấp bằng tường đá có mạch vữa và các phòng hiện ra như khoang rỗng thật. Dùng instanced mesh, ánh sáng PBR lấy từ mô hình bầu trời, chỉ render khi cảnh thay đổi và dùng lại bóng đổ đã tính.">Every stone is drawn into the stencil buffer with an invert op; odd parity means "inside rock", so the cut is filled with mortar-jointed masonry and the chambers show up as real cavities. Instanced meshes, PBR lit from the sky model, render-on-demand with cached shadows.</p></div>
             <div class="stage"><div class="k" data-vi="LỚP 2 · MÔ PHỎNG">LAYER 2 · SIMULATION</div><h4 data-vi="Khoa học kiểm chứng được">Science you can check</h4><p data-vi="13.200 tia bắn qua hình học thật, có nhiễu Poisson, tái hiện Khoảng trống lớn của ScanPyramids ở mức trên 5σ. Tuế sai IAU 1976 cộng chuyển động riêng của sao cho thấy sao Alnitak nằm trên trục phía nam Phòng Vua vào khoảng năm 2476 TCN.">13,200 rays traced through the real geometry with Poisson noise reproduce the ScanPyramids Big Void above 5σ. IAU 1976 precession plus proper motion puts Alnitak on the King's Chamber south shaft around 2476 BCE.</p></div>
@@ -595,6 +631,7 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
   </section>
 </main>
 
+<dialog id="lightbox" aria-label="Screenshot"><img alt=""><div class="lb-foot"><span class="lb-cap"></span><button class="mini lb-close" type="button" data-vi="Đóng">Close</button></div></dialog>
 <footer>
   <div class="wrap label">
     <span data-vi="© 2026 Vũ Thế Vinh">© 2026 Vu The Vinh</span>
@@ -603,6 +640,18 @@ body.building .pipeline .stage,body.building .features li,body.building .fact,bo
 </footer>
 
 <script>
+/* ===== screenshot lightbox ===== */
+(function(){
+  var dlg=document.getElementById('lightbox');if(!dlg||!dlg.showModal)return;
+  var img=dlg.querySelector('img'),cap=dlg.querySelector('.lb-cap');
+  document.querySelectorAll('.shot-open').forEach(function(b){b.addEventListener('click',function(){
+    var src=b.querySelector('img');img.src=src.currentSrc||src.src;img.alt=src.alt;
+    cap.innerHTML=b.parentNode.querySelector('figcaption').innerHTML;dlg.showModal();
+  })});
+  dlg.querySelector('.lb-close').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+})();
+
 /* ===== VIE / ENG ===== */
 (function(){
   var STR={
@@ -778,6 +827,7 @@ document.getElementById('copy-email').addEventListener('click', function(){
       var pr=projects[p];
       await scrollToEl(pr.querySelector('h3'),2000,id);
       await visit(pr.querySelector('h3'),id,{fx:.15,dwell:700});
+      var sh=pr.querySelector('.shot-open');if(sh){await scrollToEl(sh,1300,id,innerHeight*.18);await visit(sh,id,{fx:.6,fy:.55,ms:900,dwell:1400});hover(null)}
       await scrollToEl(pr.querySelector('.pipeline'),1300,id,innerHeight*.28);
       var st=pr.querySelectorAll('.stage');
       for(var s=0;s<st.length;s++){await visit(st[s],id,{fy:.35,dwell:300});await visit(st[s],id,{fx:.75,fy:.7,ms:700,dwell:400})}
@@ -814,7 +864,7 @@ document.getElementById('copy-email').addEventListener('click', function(){
     await wait(1200,id);
   }
   /* ---- build: drag out a frame for each block, then fill it ---- */
-  var BUILD_SEL='nav .brand, nav .nav-right ul, .hero .label, .hero-word, .hero-photo, .hello, .hero h1, .roles, .hero-side li, .hero-row p, .hero .cta, .ticker, #about .sec-head .label, #about .sec-head h2, .about p, .fact, .bigmarquee, #projects .sec-head .label, #projects .sec-head h2, .project .p-meta, .project h3, .project .role, .stage, .features li, .result, .project .stack, #experience .sec-head .label, #experience .sec-head h2, .trace > .label, .hop, #skills .sec-head .label, #skills .sec-head h2, .skill, #credentials .sec-head .label, #credentials .sec-head h2, .creds h3, .cred-list li, #contact > .wrap > .label, #contact h2, .link, footer .wrap';
+  var BUILD_SEL='nav .brand, nav .nav-right ul, .hero .label, .hero-word, .hero-photo, .hello, .hero h1, .roles, .hero-side li, .hero-row p, .hero .cta, .ticker, #about .sec-head .label, #about .sec-head h2, .about p, .fact, .bigmarquee, #projects .sec-head .label, #projects .sec-head h2, .project .p-meta, .project h3, .project .role, .p-shot, .stage, .features li, .result, .project .stack, #experience .sec-head .label, #experience .sec-head h2, .trace > .label, .hop, #skills .sec-head .label, #skills .sec-head h2, .skill, #credentials .sec-head .label, #credentials .sec-head h2, .creds h3, .cred-list li, #contact > .wrap > .label, #contact h2, .link, footer .wrap';
   var SMALL='.fact,.features li,.result,.stack,.cred-list li,.label,.skill,.link,.brand,nav ul,.creds h3';
   var lines=document.getElementById('b-lines'),bar=document.getElementById('b-bar'),pct=document.getElementById('b-count');
   function blocks(){return $$(BUILD_SEL).filter(function(el){return el.getClientRects().length&&!el.closest('.b-skip')})}

@@ -2,6 +2,16 @@
 
 A log of each round of changes to this portfolio, newest first. Each entry says what changed, why, and how it was checked.
 
+## 2026-11-18 · VietUrban card brought up to date
+
+Checked against the repository (400 commits, 340 by Vinh; README; code under Assets/Project):
+- Two-person project led by Vinh; Hanoi-style district rebuilt in code with motorbike traffic and real riders, electric vehicles, street vendors.
+- Economy layer now describes the Restock Advisor (forecast learned from sales history, newsvendor rule for fresh food, tested against a 7-day average on 3 simulated scenarios).
+- Features: delivery robbery and staged-accident scam; optional night horror events with a Settings switch and content warning; Nam's food-delivery game merged as a second mode.
+- Numbers: 75+ automated tests (41 test functions; pass status not claimed, Unity was not run here), 41,000+ lines of C# in supermarket mode, 28 Editor tools.
+- Removed figures that the city rebuild may have changed (14 vehicles, 22 pedestrians, 73 addresses).
+- Skills: runtime NavMesh carving, procedural meshes and sound, Mixamo animation, demand forecasting.
+
 ## 2026-11-18 · NetSentinel: RAG and LLM triage
 
 - NetSentinel card: layer 3 now describes the RAG knowledge base and OpenAI-compatible models; two features replaced with measured results ("A knowledge base, measured": 1,602 ATT&CK and Sigma documents, right technique family in the top 5 for 67% of real alerts; "LLM triage of real alerts": first Gemini 3.1 Flash-Lite run on 60 cases). Stack adds RAG, BM25, Gemini API and Sigma.

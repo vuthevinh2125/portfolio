@@ -2,6 +2,12 @@
 
 A log of each round of changes to this portfolio, newest first. Each entry says what changed, why, and how it was checked.
 
+## 2026-11-18 · NetSentinel: RAG and LLM triage
+
+- NetSentinel card: layer 3 now describes the RAG knowledge base and OpenAI-compatible models; two features replaced with measured results ("A knowledge base, measured": 1,602 ATT&CK and Sigma documents, right technique family in the top 5 for 67% of real alerts; "LLM triage of real alerts": first Gemini 3.1 Flash-Lite run on 60 cases). Stack adds RAG, BM25, Gemini API and Sigma.
+- Skills: AI engineering adds RAG with citations and OpenAI-compatible APIs; security adds Sigma rules; ML & evaluation adds retrieval recall@k and grading LLMs against hidden labels.
+- The with/without-RAG triage comparison is not on the page yet: it has not been run.
+
 ## 2026-11-10 · Skills from NetSentinel
 
 - New skill cards: **Security & detection** (Zeek / NetFlow / DNS intrusion detection, C2 beaconing, MITRE ATT&CK, alert correlation, false-positive triage, real malware traffic) and **Machine learning & evaluation** (Isolation Forest, robust z-scores, ground-truth evaluation, blind tests, Monte Carlo).
